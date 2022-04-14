@@ -31,13 +31,13 @@ class Equation extends Solvable with UsualFakes {
 
     // Most of the time X is an integer, however there is a chance it's a double.
     if (random.nextDouble() < 0.25) {
-      _x = Fraction(random.nextInt(200) - 100, 10);
+      _x = randomFraction(start: -10, end: 10, decimals: 1);
     } else {
-      _x = Fraction(random.nextInt(20) - 10, 1);
+      _x = randomFraction(start: -10, end: 10, decimals: 0);
     }
 
-    _a = Fraction(random.nextInt(200) - 100, 10);
-    _b = Fraction(random.nextInt(200) - 100, 10);
+    _a = randomFraction(start: -10, end: 10, decimals: 1);
+    _b = randomFraction(start: -10, end: 10, decimals: 1);
     _c = _a * _x + _b;
 
     // Usual fake solutions
@@ -71,7 +71,7 @@ class Equation extends Solvable with UsualFakes {
 
   @override
   String defaultFakeSolution() {
-    return Fraction(random.nextInt(200) - 100, 10).autoString();
+    return randomFraction(start: -10, end: 10, decimals: 1).autoString();
   }
 
 }
