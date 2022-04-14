@@ -99,7 +99,7 @@ mixin UsualFakes on Solvable {
   final List<String> usualFakeSolutions = [];
 
   /// Probability of using a usual fake solution
-  final _probaOfUsingAnUsualFakeSolution = 0.7;
+  final _probaOfUsingAnUsualFakeSolution = 0.4;
 
   @override
   String generateFakeSolution() {

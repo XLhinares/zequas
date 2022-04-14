@@ -4,7 +4,7 @@ import "package:zequas/classes/solvables/solvable.dart";
 import "package:zequas/utils/globals.dart";
 
 /// In-app representation of a first-degree equation `a * x + b = c`.
-class Equation extends Solvable with UsualFakes{
+class Equation extends Solvable with UsualFakes {
 
   // VARIABLES =================================================================
 
@@ -58,9 +58,9 @@ class Equation extends Solvable with UsualFakes{
   @override
   String generateQuestion() {
     if (_b.toDouble() < 0) {
-      return "$_as * x - ${_b.negate().autoString()} = $_cs";
+      return "$_as * $randomEmoji - ${_b.negate().autoString()} = $_cs";
     } else {
-      return "$_as * x + $_bs = $_cs";
+      return "$_as * $randomEmoji + $_bs = $_cs";
     }
   }
 

@@ -50,7 +50,7 @@ class Multiplication extends Solvable with UsualFakes{
 
   @override
   String generateQuestion() {
-    return "${_a.autoString()} * x = ${_b.autoString()}";
+    return "${_a.autoString()} * $randomEmoji = ${_b.autoString()}";
   }
 
   @override
