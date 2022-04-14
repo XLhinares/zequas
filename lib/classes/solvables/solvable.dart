@@ -3,7 +3,9 @@ import "dart:math";
 
 // Project dependencies
 import "package:zequas/classes/game.dart";
+import "package:zequas/classes/solvables/addition.dart";
 import "package:zequas/classes/solvables/equation.dart";
+import "package:zequas/classes/solvables/multiplication.dart";
 import "package:zequas/classes/solvables/test.dart";
 import "package:zequas/utils/globals.dart";
 
@@ -26,7 +28,10 @@ abstract class Solvable {
   /// It should be constant regardless of the generation question.
   /// If an infinite number of fake solutions can be generated, it should be
   /// set to `-1`.
-  late final int maxFakeSolutions;
+  int maxFakeSolutions = -1;
+
+  /// A random number generator.
+  final Random random = Random();
 
   // GETTERS ===================================================================
 
@@ -46,8 +51,12 @@ abstract class Solvable {
     int? seed,
   }) {
     switch (mode) {
+      case Gamemode.addition:
+        return Addition();
+      case Gamemode.multiplication:
+        return Multiplication();
       case Gamemode.equation:
-        return Equation(seed: seed);
+        return Equation();
       default:
         return TestSolvable();
     }
@@ -76,5 +85,37 @@ abstract class Solvable {
 
   /// How to generate a fake solution.
   String generateFakeSolution();
+
+}
+
+
+/// A mixin to add the ability to handle usual fake values.
+///
+/// It provides a list of fake solutions and a probability of picking one instead
+/// of generating a generic fake solution.
+mixin UsualFakes on Solvable {
+
+  /// Some typical mistake people make when solving first degree equations.
+  final List<String> usualFakeSolutions = [];
+
+  /// Probability of using a usual fake solution
+  final _probaOfUsingAnUsualFakeSolution = 0.7;
+
+  @override
+  String generateFakeSolution() {
+    if (usualFakeSolutions.isNotEmpty
+        && random.nextDouble() < _probaOfUsingAnUsualFakeSolution
+    ) {
+      usualFakeSolutions.shuffle();
+      final String fakeSolution = usualFakeSolutions.first;
+      usualFakeSolutions.removeAt(0);
+      return fakeSolution;
+    } else {
+      return defaultFakeSolution();
+    }
+  }
+
+  /// Generates a generic fake solution.
+  String defaultFakeSolution();
 
 }

@@ -1,72 +1,61 @@
 // Package dependencies
 import "package:fraction/fraction.dart";
+
+// Project dependencies
 import "package:zequas/classes/solvables/solvable.dart";
 import "package:zequas/utils/globals.dart";
 
-/// In-app representation of a first-degree equation `a * x + b = c`.
-class Equation extends Solvable with UsualFakes{
+/// In-app representation of an equation `x + a = b`.
+class Multiplication extends Solvable with UsualFakes{
 
   // VARIABLES =================================================================
 
-  /// The value multiplying `x`.
+  /// The value added to `x`.
   late final Fraction _a;
-  String get _as => _a.autoString();
-
-  /// The value added to `a * x`.
-  late final Fraction _b;
-  String get _bs => _b.autoString();
 
   /// The total value.
-  late final Fraction _c;
-  String get _cs => _c.autoString();
+  late final Fraction _b;
 
   /// The unknown value.
   late final Fraction _x;
-  String get _xs => _x.autoString();
 
   // CONSTRUCTOR ===============================================================
 
   /// Returns the equation with its computed answer and string values.
-  Equation() {
+  Multiplication() {
 
     // Most of the time X is an integer, however there is a chance it's a double.
     if (random.nextDouble() < 0.25) {
       _x = Fraction(random.nextInt(200) - 100, 10);
     } else {
-      _x = Fraction(random.nextInt(20) - 10, 1);
+      _x = Fraction(random.nextInt(20) - 10, 10);
     }
 
     _a = Fraction(random.nextInt(200) - 100, 10);
-    _b = Fraction(random.nextInt(200) - 100, 10);
-    _c = _a * _x + _b;
+    _b = _x * _a;
 
     // Usual fake solutions
 
-    // When you try the division first.
-    usualFakeSolutions.add(((_c - _b * _a) / _a).autoString());
-    // When you add instead of subtracting.
-    usualFakeSolutions.add(((_c + _b) / _a).autoString());
-    // When you multiply instead of dividing.
-    usualFakeSolutions.add((_a * (_c + _b)).autoString());
+    // When you add instead of dividing.
+    usualFakeSolutions.add((_b + _a).autoString());
+    // When you subtract instead of dividing.
+    usualFakeSolutions.add((_b - _a).autoString());
+    // When you divide the wrong numbers.
+    usualFakeSolutions.add((_a * _b.inverse()).autoString());
 
     super.prepare();
   }
 
   // METHODS ===================================================================
 
-
   @override
   String generateQuestion() {
-    if (_b.toDouble() < 0) {
-      return "$_as * x - ${_b.negate().autoString()} = $_cs";
-    } else {
-      return "$_as * x + $_bs = $_cs";
-    }
+    return "${_a.autoString()} * x = ${_b.autoString()}";
   }
 
   @override
   String generateSolution() {
-    return _xs;
+    return _x.autoString();
   }
 
   @override
