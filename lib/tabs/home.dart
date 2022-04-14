@@ -30,7 +30,10 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Zequas"),
+        title: Text(
+          "Zequas",
+          style: Get.textTheme.titleMedium,
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: paddingM),

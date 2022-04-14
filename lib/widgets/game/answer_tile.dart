@@ -2,12 +2,13 @@
 import "package:flutter/material.dart";
 
 // Package dependencies
+import "package:get/get.dart";
 import "package:x_containers/x_containers.dart";
 
 /// The box in which an answer appears during the game.
 ///
 /// It is a customized [InkContainer]
-class AnswerContainer extends StatelessWidget {
+class AnswerTile extends StatelessWidget {
 
   // VARIABLES =================================================================
 
@@ -22,8 +23,8 @@ class AnswerContainer extends StatelessWidget {
 
   // CONSTRUCTOR ===============================================================
 
-  /// Returns an instance of [AnswerContainer] matching the given parameters.
-  const AnswerContainer({
+  /// Returns an instance of [AnswerTile] matching the given parameters.
+  const AnswerTile({
     Key? key,
     required this.text,
     required this.color,
@@ -38,7 +39,10 @@ class AnswerContainer extends StatelessWidget {
       color: color,
       enableSplash: false,
       onTap: onTap,
-      child: Text(text),
+      child: Text(
+          text,
+        style: Get.textTheme.bodyMedium,
+      ),
     );
   }
 

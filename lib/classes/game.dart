@@ -54,8 +54,8 @@ class Game extends GetxController {
 
   /// The progress value of the game between 0 and 1.
   double get progress => _turns.isEmpty
-  ? 1
-  : _index / _turns.length;
+      ? 1
+      : _index / _turns.length;
 
   // TURN PROPERTIES -----------------------------------------------------------
 
@@ -95,7 +95,7 @@ class Game extends GetxController {
     for (int i = 0 ; i < settings.gameLength ; i++) {
       _turns.add(Solvable.fromMode(
         mode: mode,
-          seed: i,
+        seed: i,
       ));
       _history.add(1);
     }
@@ -117,5 +117,15 @@ class Game extends GetxController {
       return false;
     }
   }
+
+  /// Returns the history the last played game.
+  List<Map<String, String>> get history => List.generate(
+    _index + 1,
+        (index) => {
+      "question": _turns[index].question,
+      "solution": _turns[index].solution,
+      "tries": _history[index].toString(),
+    },
+  );
 
 }

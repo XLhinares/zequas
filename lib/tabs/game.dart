@@ -10,7 +10,7 @@ import "package:zequas/tabs/game_summary.dart";
 // Project dependencies
 import "package:zequas/utils/globals.dart";
 import "package:zequas/utils/layout_globals.dart";
-import "package:zequas/widgets/game/answer.dart";
+import "package:zequas/widgets/game/answer_tile.dart";
 
 /// The game tab.
 ///
@@ -57,7 +57,7 @@ class GameTab extends StatelessWidget {
 
                       Text(
                           game.question,
-                        style: Get.theme.textTheme.titleLarge,
+                        style: Get.theme.textTheme.titleMedium,
                       ),
 
                       Space.verticalM,
@@ -65,7 +65,7 @@ class GameTab extends StatelessWidget {
                       ListView.separated(
                         shrinkWrap: true,
                         itemCount: game.possibleSolutions.length,
-                        itemBuilder: (context, index) => Obx(() => AnswerContainer(
+                        itemBuilder: (context, index) => Obx(() => AnswerTile(
                               text: game.possibleSolutions[index],
                               color: answerColors[index],
                               onTap: () => submitAnswer(index)
@@ -114,7 +114,7 @@ class GameTab extends StatelessWidget {
   void nextQuestion () {
     resetColors();
     if (game.playingLastTurn) {
-      Get.off(() => const GameSummary());
+      Get.off(() => GameSummary());
     } else {
       game.goToNextTurn();
     }
