@@ -95,7 +95,6 @@ List<String> emojis = [
   emojiParser.emojify(":polar_bear:"),
   emojiParser.emojify(":bear:"),
   emojiParser.emojify(":panda_face:"),
-  emojiParser.emojify(":pig_nose:"),
   emojiParser.emojify(":chipmunk:"),
 ];
 
@@ -108,11 +107,13 @@ String get randomEmoji {
 // COLOR SCHEME ================================================================
 
 /// The primary color of the app.
-Color cPrimary = const Color(0xFF262031);
+Color cPrimary = const Color(0xFF689BA6);
 
 /// The secondary color of the app.
-Color cSecondary = const Color(0xFF697eb6);
+Color cSecondary = const Color(0xFFE0AA3A);
 
+/// The accent color of the app.
+Color cAccent = const Color(0xFFEF596C);
 
 // FUNCTIONS ===================================================================
 
@@ -132,4 +133,20 @@ extension AutoString on Fraction {
       return reduce().toString();
     }
   }
+}
+
+/// Return a random Fraction
+Fraction randomFraction({
+  int start = 0,
+  required int end,
+  int decimals = 0,
+  bool canBeZero = false,
+}) {
+  final Random random = Random();
+  int scale = pow(10, decimals).toInt();
+  int numerator = 0;
+  while (numerator == 0) {
+    numerator = random.nextInt((end - start) * scale) + start * scale;
+  }
+  return Fraction(numerator, scale);
 }
