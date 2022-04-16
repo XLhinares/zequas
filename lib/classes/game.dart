@@ -113,6 +113,14 @@ class Game extends GetxController {
     update();
   }
 
+  /// Goes to the next turn index and updates the possible [GetBuilder].
+  void goToEnd () {
+    for (int i = _index ; i < _turns.length ; i++) {
+      _history[i] = 0;
+    }
+    _index = _turns.length - 1;
+  }
+
   /// Checks if an answer is right
   bool submitAnswer(String answer) {
     print("$answer & $_solution");

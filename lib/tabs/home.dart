@@ -32,7 +32,6 @@ class Home extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           "Zequas",
-          style: Get.textTheme.titleMedium,
         ),
         actions: [
           IconButton(

@@ -1,4 +1,6 @@
 // Flutter dependencies
+import 'dart:ui';
+
 import "package:flutter/material.dart";
 
 // Package dependencies
@@ -34,7 +36,14 @@ void main() {
       // APPBAR
       appBarTheme: const AppBarTheme().copyWith(
         color: cSecondary,
+        titleTextStyle: const TextStyle(
+          fontSize: 24,
+          fontWeight: FontWeight.w600,
+          fontFeatures: [FontFeature.enable("smcp")],
+          letterSpacing: 0.25,
+        ),
       ),
+      dialogBackgroundColor: cSecondary,
       primaryColor: cPrimary,
       backgroundColor: cBackground,
       scaffoldBackgroundColor: cBackground,

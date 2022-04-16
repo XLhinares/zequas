@@ -35,7 +35,9 @@ class GameSummary extends StatelessWidget {
     int points = 0;
     for (final Map<String, String> turn in history) {
       final int tries = int.parse(turn["tries"]!);
-      if (tries <= 1) {
+      if (tries <= 0) {
+        // The question wasn't answered, no points given.
+      } else if (tries <= 1) {
         // Add 5 point below 1 try.
         points += 5;
       } else if (tries <= 2) {

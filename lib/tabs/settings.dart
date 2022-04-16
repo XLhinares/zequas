@@ -33,32 +33,42 @@ class TabSettings extends StatelessWidget {
         padding: EdgeInsets.symmetric(vertical: xPaddingM),
         children: [
           // GAME LENGTH -------------------------------------------------------
-          SettingsRow(
+
+          ShadowContainer(
+            color: Get.theme.colorScheme.secondary,
+            child: const Text("Paramètres de jeu"),
+          ),
+          XLayout.verticalM,
+
+          SettingsRow.separated(
             name: "Questions par partie:",
+            separator: XLayout.horizontalS,
             actions: [
-              IconButton(
-                onPressed: () => settings.gameLength.value--,
-                icon: const Icon(Icons.remove),
+              GestureDetector(
+                onTap: () => settings.gameLength.value--,
+                child: const Icon(Icons.remove),
               ),
               Obx(() => Text(settings.gameLength.toString())),
-              IconButton(
-                onPressed: () => settings.gameLength.value++,
-                icon: const Icon(Icons.add),
+              GestureDetector(
+                onTap: () => settings.gameLength.value++,
+                child: const Icon(Icons.add),
               ),
             ],
           ),
+          XLayout.verticalS,
           // NUMBER OF POSSIBLE SOLUTIONS
-          SettingsRow(
+          SettingsRow.separated(
             name: "Nombre de choix:",
+            separator: XLayout.horizontalS,
             actions: [
-              IconButton(
-                onPressed: () => settings.numberOfPossibleSolutions.value--,
-                icon: const Icon(Icons.remove),
+              GestureDetector(
+                onTap: () => settings.numberOfPossibleSolutions.value--,
+                child: const Icon(Icons.remove),
               ),
               Obx(() => Text(settings.numberOfPossibleSolutions.toString())),
-              IconButton(
-                onPressed: () => settings.numberOfPossibleSolutions.value++,
-                icon: const Icon(Icons.add),
+              GestureDetector(
+                onTap: () => settings.numberOfPossibleSolutions.value++,
+                child: const Icon(Icons.add),
               ),
             ],
           ),
