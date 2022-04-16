@@ -5,18 +5,20 @@ import "package:flutter/material.dart";
 
 // Package dependencies
 import "package:get/get.dart";
+import "package:x_containers/settings/x_layout.dart";
 import "package:zequas/tabs/game_summary.dart";
 
 // Project dependencies
 import "package:zequas/utils/globals.dart";
-import "package:zequas/utils/layout_globals.dart";
 import "package:zequas/widgets/game/answer_tile.dart";
+import 'package:zequas/widgets/layout/frame_fit.dart';
+import "package:zequas/widgets/layout/scaffold_fit.dart";
 
 /// The game tab.
 ///
 /// It displays a game turn and allows the user to pick an answer.
 /// If the answer is the solution the game goes to the next turn.
-class GameTab extends StatelessWidget {
+class TabGame extends StatelessWidget {
 
   // VARIABLES =================================================================
 
@@ -28,7 +30,7 @@ class GameTab extends StatelessWidget {
   // CONSTRUCTOR ===============================================================
 
   /// Returns an instance of [Game] matching the given parameters.
-  GameTab({Key? key}) : super(key: key) {
+  TabGame({Key? key}) : super(key: key) {
     for (int i = 0 ; i < game.possibleSolutions.length ; i++) {
       answerColors.add(null);
     }
@@ -40,44 +42,43 @@ class GameTab extends StatelessWidget {
   Widget build(BuildContext context) {
 
 
-    return Scaffold(
-      backgroundColor: Get.theme.colorScheme.primary,
+    return ScaffoldFit(
       body: GetBuilder(
         init: game,
         builder: (_) => Column(
           children: [
             Expanded(
-                child: Padding(
-                  padding: EdgeInsets.symmetric(
-                      horizontal: Get.width * 0.1
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-
-                      Text(
-                          game.question,
-                        style: Get.theme.textTheme.titleMedium,
-                      ),
-
-                      Space.verticalM,
-
-                      ListView.separated(
-                        shrinkWrap: true,
-                        itemCount: game.possibleSolutions.length,
-                        itemBuilder: (context, index) => Obx(() => AnswerTile(
-                              text: game.possibleSolutions[index],
-                              color: answerColors[index],
-                              onTap: () => submitAnswer(index)
-                          ),
-                        ),
-                        separatorBuilder: (context, index) => Space.verticalM,
-                      ),
-
-
-                    ],
-                  ),
+              child: FrameFit(
+                padding: EdgeInsets.symmetric(
+                    horizontal: Get.width * 0.1
                 ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+
+                    Text(
+                      game.question,
+                      style: Get.theme.textTheme.titleMedium,
+                    ),
+
+                    XLayout.verticalM,
+
+                    ListView.separated(
+                      shrinkWrap: true,
+                      itemCount: game.possibleSolutions.length,
+                      itemBuilder: (context, index) => Obx(() => AnswerTile(
+                          text: game.possibleSolutions[index],
+                          color: answerColors[index],
+                          onTap: () => submitAnswer(index)
+                      ),
+                      ),
+                      separatorBuilder: (context, index) => XLayout.verticalM,
+                    ),
+
+
+                  ],
+                ),
+              ),
             ),
             _progressBar,
           ],

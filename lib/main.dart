@@ -6,37 +6,42 @@ import "package:x_containers/x_containers.dart";
 import "package:get/get.dart";
 
 // Project dependencies
-import "package:zequas/tabs/home.dart";
+import "package:zequas/tabs/splash_screen.dart";
 import "package:zequas/utils/globals.dart";
-import "package:zequas/utils/layout_globals.dart";
 
 void main() {
 
   // Setting the global theme of XContainers
   xTheme.set(
     padding: const EdgeInsets.all(20),
-    borderRadius: ContainerShape.brcS,
-    primaryColor: cSecondary,
+    borderRadius: XLayout.brcS,
+    primaryColor: cPrimary,
   );
 
   runApp(GetMaterialApp(
-    home: const Home(),
+    home: SplashScreen(),
+    debugShowCheckedModeBanner: false,
+    // THEME ===================================================================
     themeMode: ThemeMode.light,
     theme: ThemeData.light().copyWith(
       // COLORS ----------------------------------------------------------------
       // COLOR SCHEME
-      colorScheme: const ColorScheme.dark().copyWith(
+      colorScheme: const ColorScheme.light().copyWith(
         secondary: cSecondary,
         primary: cPrimary,
+        background: cBackground,
       ),
       // APPBAR
       appBarTheme: const AppBarTheme().copyWith(
-        color: cAccent,
+        color: cSecondary,
       ),
       primaryColor: cPrimary,
-      backgroundColor: cPrimary,
-      scaffoldBackgroundColor: cPrimary,
+      backgroundColor: cBackground,
+      scaffoldBackgroundColor: cBackground,
       splashColor: cSecondary,
+      iconTheme: const IconThemeData().copyWith(
+        color: Colors.white,
+      ),
       // TEXT ------------------------------------------------------------------
       textTheme: const TextTheme().copyWith(
         // TITLE MEDIUM

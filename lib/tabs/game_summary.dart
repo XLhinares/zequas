@@ -7,9 +7,9 @@ import "package:x_containers/x_containers.dart";
 
 // Project dependencies
 import "package:zequas/utils/globals.dart";
-import "package:zequas/utils/layout_globals.dart";
 import "package:zequas/widgets/game/game_stats.dart";
 import "package:zequas/widgets/game/history_tile.dart";
+import "package:zequas/widgets/layout/scaffold_fit.dart";
 
 /// The summary of the game that was just played.
 class GameSummary extends StatelessWidget {
@@ -64,14 +64,14 @@ class GameSummary extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return ScaffoldFit(
       body: Stack(
         children: [
 
           // MAIN WINDOW -------------------------------------------------------
           Positioned.fill(
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: paddingM),
+              padding: EdgeInsets.symmetric(horizontal: xPaddingM),
               child: ListView.builder(
                 padding: EdgeInsets.only(
                   top: Get.height * 0.1,
@@ -96,7 +96,7 @@ class GameSummary extends StatelessWidget {
             left: 0,
             right: 0,
             child: InkContainer(
-              margin: const EdgeInsets.all(paddingM),
+              margin: EdgeInsets.all(xPaddingM),
               onTap: () => Get.back(),
               child: Text(
                 "Retour au menu",

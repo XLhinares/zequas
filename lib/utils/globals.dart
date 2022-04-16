@@ -107,13 +107,13 @@ String get randomEmoji {
 // COLOR SCHEME ================================================================
 
 /// The primary color of the app.
-Color cPrimary = const Color(0xFF689BA6);
+Color cBackground = const Color(0xFF689BA6);
 
 /// The secondary color of the app.
-Color cSecondary = const Color(0xFFE0AA3A);
+Color cPrimary = const Color(0xFFE0AA3A);
 
 /// The accent color of the app.
-Color cAccent = const Color(0xFFEF596C);
+Color cSecondary = const Color(0xFFEF596C);
 
 // FUNCTIONS ===================================================================
 

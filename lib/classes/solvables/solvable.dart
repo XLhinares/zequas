@@ -3,11 +3,14 @@ import "dart:math";
 
 // Project dependencies
 import "package:zequas/classes/game.dart";
-import "package:zequas/classes/solvables/addition.dart";
-import "package:zequas/classes/solvables/equation.dart";
-import "package:zequas/classes/solvables/multiplication.dart";
+import "package:zequas/classes/solvables/equations/addition.dart";
+import "package:zequas/classes/solvables/equations/equation.dart";
+import "package:zequas/classes/solvables/equations/multiplication.dart";
+import "package:zequas/classes/solvables/percentages/percentage.dart";
 import "package:zequas/classes/solvables/test.dart";
 import "package:zequas/utils/globals.dart";
+
+import "percentages/sale.dart";
 
 /// In-app representation of a question to be solved.
 abstract class Solvable {
@@ -37,8 +40,8 @@ abstract class Solvable {
 
   /// The number of possible solutions that should be generated
   int get fakeSolutionsLength => maxFakeSolutions == -1
-      ? settings.numberOfPossibleSolutions - 1
-      : min(settings.numberOfPossibleSolutions - 1, maxFakeSolutions);
+      ? settings.numberOfPossibleSolutions.value - 1
+      : min(settings.numberOfPossibleSolutions.value - 1, maxFakeSolutions);
 
   // CONSTRUCTOR ===============================================================
 
@@ -57,6 +60,10 @@ abstract class Solvable {
         return Multiplication();
       case Gamemode.equation:
         return Equation();
+      case Gamemode.percentage:
+        return Percentage();
+      case Gamemode.sale:
+        return Sale();
       default:
         return TestSolvable();
     }
@@ -99,12 +106,12 @@ mixin UsualFakes on Solvable {
   final List<String> usualFakeSolutions = [];
 
   /// Probability of using a usual fake solution
-  final _probaOfUsingAnUsualFakeSolution = 0.4;
+  double probaOfUsingAnUsualFakeSolution = 0.4;
 
   @override
   String generateFakeSolution() {
     if (usualFakeSolutions.isNotEmpty
-        && random.nextDouble() < _probaOfUsingAnUsualFakeSolution
+        && random.nextDouble() < probaOfUsingAnUsualFakeSolution
     ) {
       usualFakeSolutions.shuffle();
       final String fakeSolution = usualFakeSolutions.first;

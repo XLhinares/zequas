@@ -5,9 +5,6 @@ import "package:flutter/material.dart";
 import "package:get/get.dart";
 import "package:x_containers/x_containers.dart";
 
-// Project dependencies
-import "package:zequas/utils/layout_globals.dart";
-
 /// A container summarizing the history of a turn.
 class HistoryTile extends StatelessWidget {
 
@@ -36,8 +33,8 @@ class HistoryTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CustomCard(
-      density: paddingM,
+    return XCard(
+      density: xPaddingM,
       title: Text(
         question,
         style: Get.textTheme.bodyMedium!.copyWith(color: Colors.black87),

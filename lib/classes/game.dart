@@ -18,6 +18,12 @@ enum Gamemode {
 
   /// Give equations of form `a * x + b = c`
   equation,
+
+  /// Give calculus like `a% of b`
+  percentage,
+
+  /// Give calculus like `a decreased/increased by b%`
+  sale,
 }
 
 /// The in-app representation of a game.
@@ -92,7 +98,7 @@ class Game extends GetxController {
     _turns.clear();
     _history.clear();
 
-    for (int i = 0 ; i < settings.gameLength ; i++) {
+    for (int i = 0 ; i < settings.gameLength.value ; i++) {
       _turns.add(Solvable.fromMode(
         mode: mode,
         seed: i,

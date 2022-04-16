@@ -4,7 +4,6 @@ import "package:get/get.dart";
 
 // Package dependencies
 import "package:x_containers/x_containers.dart";
-import "package:zequas/utils/layout_globals.dart";
 
 /// A container displaying the stats of the player during the last game
 class GameStats extends StatelessWidget {
@@ -31,7 +30,7 @@ class GameStats extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ShadowContainer(
-      margin: const EdgeInsets.all(paddingS),
+      margin: EdgeInsets.all(xPaddingS),
       child: Column(
         children: [
           Row(
