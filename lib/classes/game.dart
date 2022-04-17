@@ -3,6 +3,7 @@ import "package:get/get.dart";
 
 // Project dependencies
 import "package:zequas/classes/solvables/solvable.dart";
+import "package:zequas/tabs/game.dart";
 import "package:zequas/utils/globals.dart";
 
 /// The different possible gamemodes.
@@ -26,6 +27,50 @@ enum Gamemode {
   sale,
 }
 
+/// An extension on Gamemodes to be able to retrieve some details.
+///
+/// Handled details are:
+/// - name: A name to display
+/// - example: An example of the question included in the gamemode.
+extension GamemodeRich on Gamemode {
+
+  /// The name of the gamemode.
+  String get name {
+    switch (this) {
+      case Gamemode.addition:
+        return "Additions";
+      case Gamemode.multiplication:
+        return "Multiplications";
+      case Gamemode.equation:
+        return "Équations";
+      case Gamemode.percentage:
+        return "Pourcentages";
+      case Gamemode.sale:
+        return "Promotions";
+      default:
+        return "Inconnu";
+    }
+  }
+
+  /// The name of the gamemode.
+  String get example {
+    switch (this) {
+      case Gamemode.addition:
+        return "A + B = C";
+      case Gamemode.multiplication:
+        return "A * B = C";
+      case Gamemode.equation:
+        return "A + B * C = D";
+      case Gamemode.percentage:
+        return "A% de B";
+      case Gamemode.sale:
+        return "A avec B% de promo";
+      default:
+        return "???";
+    }
+  }
+}
+
 /// The in-app representation of a game.
 ///
 /// It consists of a list of turns generated at the beginning of the game through
@@ -41,7 +86,7 @@ class Game extends GetxController {
 
   /// The list of turns that are going to appear.
   ///
-  /// They are generated according to the gamemode by the method [resetGame] when
+  /// They are generated according to the gamemode by the method [_prepareNewGame] when
   /// a new game starts.
   final List<Solvable> _turns = [];
 
@@ -92,8 +137,16 @@ class Game extends GetxController {
 
   // METHODS ===================================================================
 
+  /// Creates a new game in the given gamemode and navigates to the game tab.
+  void start ({Gamemode mode = Gamemode.none}) {
+    print("a: $mode");
+    this.mode = mode;
+    _prepareNewGame();
+    Get.to(() => TabGame());
+  }
+
   /// Resets the index and generates a new set of turns according to the gamemode.
-  void reset () {
+  void _prepareNewGame() {
     _index = 0;
     _turns.clear();
     _history.clear();

@@ -8,8 +8,7 @@ import "package:zequas/tabs/settings.dart";
 
 // Project dependencies
 import "package:zequas/classes/game.dart";
-import "package:zequas/utils/globals.dart";
-import "package:zequas/tabs/game.dart";
+import "package:zequas/widgets/home/game_mode_panel.dart";
 import "package:zequas/widgets/layout/scaffold_fit.dart";
 
 /// The home tab of the game.
@@ -30,13 +29,13 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return ScaffoldFit(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           "Zequas",
         ),
         actions: [
           IconButton(
-              onPressed: () => Get.to(() => const TabSettings()),
-              icon: const Icon(Icons.settings),
+            onPressed: () => Get.to(() => const TabSettings()),
+            icon: const Icon(Icons.settings),
           ),
         ],
       ),
@@ -44,42 +43,27 @@ class Home extends StatelessWidget {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          InkContainer(
-            child: const Text("Addition"),
-            onTap: () => goToGame(mode: Gamemode.addition),
+          GamemodePanel(
+            title: "Équations",
+            description: "Trouver la valeur inconnue dans une équation simple.",
+            displayedModes: const [
+              Gamemode.addition,
+              Gamemode.multiplication,
+              Gamemode.equation,
+            ],
           ),
           XLayout.verticalM,
-          InkContainer(
-            child: const Text("Multiplication"),
-            onTap: () => goToGame(mode: Gamemode.multiplication),
-          ),
-          XLayout.verticalM,
-          InkContainer(
-            child: const Text("Equation"),
-            onTap: () => goToGame(mode: Gamemode.equation),
-          ),
-          XLayout.verticalM,
-          InkContainer(
-            child: const Text("Pourcentage"),
-            onTap: () => goToGame(mode: Gamemode.percentage),
-          ),
-          XLayout.verticalM,
-          InkContainer(
-            child: const Text("Promos"),
-            onTap: () => goToGame(mode: Gamemode.sale),
+          GamemodePanel(
+            title:"Pourcentages",
+            description: "Calculer un pourcentage ou une promotion.",
+            displayedModes: const [
+              Gamemode.percentage,
+              Gamemode.sale,
+            ],
           ),
         ],
       ),
     );
-  }
-
-  // METHODS ===================================================================
-
-  /// Sets the gamemode to the given value and goes to the [Game] tab.
-  void goToGame ({required Gamemode mode}) {
-    game.mode = mode;
-    game.reset();
-    Get.to(() => TabGame());
   }
 
 }

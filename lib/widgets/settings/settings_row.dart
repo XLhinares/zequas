@@ -2,6 +2,7 @@
 import "package:flutter/material.dart";
 import 'package:get/get.dart';
 import "package:x_containers/x_containers.dart";
+import 'package:zequas/utils/globals.dart';
 
 /// A row used to display settings in a uniformized way.
 class SettingsRow extends StatelessWidget {
@@ -10,6 +11,9 @@ class SettingsRow extends StatelessWidget {
 
   /// The name of the settings.
   final String name;
+
+  /// A description of what the setting does.
+  final String description;
 
   /// A list
   final List<Widget> actions;
@@ -20,6 +24,7 @@ class SettingsRow extends StatelessWidget {
   const SettingsRow({
     Key? key,
     required this.name,
+    this.description = "",
     this.actions = const <Widget>[],
   }) : super(key: key);
 
@@ -27,6 +32,7 @@ class SettingsRow extends StatelessWidget {
   factory SettingsRow.separated({
     Key? key,
     required String name,
+    String description = "",
     List<Widget> actions = const <Widget>[],
     required Widget separator,
   }) {
@@ -37,25 +43,27 @@ class SettingsRow extends StatelessWidget {
     }
     separatedActions.removeLast();
 
-    return SettingsRow(key: key, name: name, actions: separatedActions);
+    return SettingsRow(
+      key: key,
+      name: name,
+      description: description,
+      actions: separatedActions,
+    );
   }
   // BUILD =====================================================================
 
   @override
   Widget build(BuildContext context) {
-    return ShadowContainer(
-      height: xPaddingL,
+    return XCard(
+      color: cPrimary,
+      margin: EdgeInsets.symmetric(vertical: xPaddingXS),
       padding: EdgeInsets.all(xPaddingS),
-      child: DefaultTextStyle(
-        style: Get.textTheme.bodyMedium!,
-        child: Row(
-          children: [
-            Text(name,),
-            const Expanded(child: SizedBox()),
-            ...actions,
-          ],
-        ),
-      ),
+      // density: xPaddingM,
+      title: Text(name,),
+      subtitle: description.isEmpty
+          ? null
+          : Text(description,),
+      trailing: Row(children: actions),
     );
   }
 

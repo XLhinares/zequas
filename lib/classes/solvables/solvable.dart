@@ -53,6 +53,7 @@ abstract class Solvable {
     Gamemode mode = Gamemode.none,
     int? seed,
   }) {
+    print("b $mode");
     switch (mode) {
       case Gamemode.addition:
         return Addition();

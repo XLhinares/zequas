@@ -36,12 +36,15 @@ class TabSettings extends StatelessWidget {
 
           ShadowContainer(
             color: Get.theme.colorScheme.secondary,
-            child: const Text("Paramètres de jeu"),
+            child: Text("Paramètres de jeu",
+            style: Get.textTheme.titleSmall,
+            ),
           ),
           XLayout.verticalM,
 
           SettingsRow.separated(
-            name: "Questions par partie:",
+            name: "Nombre de questions:",
+            // description: "Le nombre de questions qui seront posées au cours d'une partie.",
             separator: XLayout.horizontalS,
             actions: [
               GestureDetector(
@@ -55,7 +58,6 @@ class TabSettings extends StatelessWidget {
               ),
             ],
           ),
-          XLayout.verticalS,
           // NUMBER OF POSSIBLE SOLUTIONS
           SettingsRow.separated(
             name: "Nombre de choix:",

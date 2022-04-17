@@ -43,6 +43,7 @@ dependencies:
   fraction: ^4.0.1
   flutter_emoji: ^2.4.0
   shared_preferences: ^2.0.13
+  expandable: ^5.0.1
 
 dev_dependencies:
   lint: ^1.7.2
