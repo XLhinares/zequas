@@ -34,7 +34,10 @@ class HistoryTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return XCard(
-      density: xPaddingM,
+      padding: EdgeInsets.symmetric(
+        vertical: xPaddingS,
+        horizontal: xPaddingM,
+      ),
       title: Text(
         question,
         style: Get.textTheme.bodyMedium!.copyWith(color: Colors.black87),

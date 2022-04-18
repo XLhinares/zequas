@@ -11,8 +11,8 @@ import "package:zequas/tabs/game_summary.dart";
 // Project dependencies
 import "package:zequas/utils/globals.dart";
 import "package:zequas/widgets/game/answer_tile.dart";
-import 'package:zequas/widgets/layout/custom_dialog.dart';
-import 'package:zequas/widgets/layout/frame_fit.dart';
+import "package:zequas/widgets/layout/custom_dialog.dart";
+import "package:zequas/widgets/layout/frame_fit.dart";
 import "package:zequas/widgets/layout/scaffold_fit.dart";
 
 /// The game tab.

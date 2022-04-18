@@ -1,7 +1,5 @@
-
 // Flutter dependencies
-import 'dart:ui';
-
+import "dart:ui";
 import "package:flutter/material.dart";
 
 // Package dependencies

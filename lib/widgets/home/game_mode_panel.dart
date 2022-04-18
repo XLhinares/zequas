@@ -7,7 +7,7 @@ import "package:get/get.dart";
 import "package:x_containers/x_containers.dart";
 
 // Project dependencies
-import "package:zequas/classes/game.dart";
+import "package:zequas/classes/gamemode.dart";
 import "package:zequas/utils/globals.dart";
 
 /// A panel to encompass a few gamemodes.
@@ -41,9 +41,6 @@ class GamemodePanel extends StatelessWidget {
     return ShadowContainer(
       child: ExpandablePanel(
         controller: _controller,
-        theme: ExpandableThemeData(
-          useInkWell: true,
-        ),
         header: Padding(
           padding: EdgeInsets.only(bottom: xPaddingM),
           child: Text(
@@ -61,7 +58,7 @@ class GamemodePanel extends StatelessWidget {
         expanded: Column(
           children: [
             ...displayedModes.map<Widget>(
-                  (Gamemode mode) => InkContainer(
+                  (mode) => InkContainer(
                 margin: EdgeInsets.all(xPaddingXS,
                 ),
                 padding: EdgeInsets.symmetric(

@@ -2,15 +2,19 @@
 import "dart:math";
 
 // Project dependencies
-import "package:zequas/classes/game.dart";
+import "package:zequas/classes/gamemode.dart";
 import "package:zequas/classes/solvables/equations/addition.dart";
 import "package:zequas/classes/solvables/equations/equation.dart";
 import "package:zequas/classes/solvables/equations/multiplication.dart";
+import "package:zequas/classes/solvables/fractions/addition.dart";
+import "package:zequas/classes/solvables/fractions/equation.dart";
+import "package:zequas/classes/solvables/fractions/multiplication.dart";
 import "package:zequas/classes/solvables/percentages/percentage.dart";
+import "package:zequas/classes/solvables/percentages/sale.dart";
 import "package:zequas/classes/solvables/test.dart";
 import "package:zequas/utils/globals.dart";
 
-import "percentages/sale.dart";
+export "mixins.dart";
 
 /// In-app representation of a question to be solved.
 abstract class Solvable {
@@ -32,6 +36,11 @@ abstract class Solvable {
   /// If an infinite number of fake solutions can be generated, it should be
   /// set to `-1`.
   int maxFakeSolutions = -1;
+
+  /// The probability that the right solution is not among the answers.
+  ///
+  /// In this case, a "None of the answers" button is displayed.
+  double probaNoSolution = 0.1;
 
   /// A random number generator.
   final Random random = Random();
@@ -55,12 +64,21 @@ abstract class Solvable {
   }) {
     print("b $mode");
     switch (mode) {
-      case Gamemode.addition:
-        return Addition();
-      case Gamemode.multiplication:
-        return Multiplication();
-      case Gamemode.equation:
-        return Equation();
+    // FRACTION --------------------------------------------------------------
+      case Gamemode.fractionAddition:
+        return FractionAddition();
+      case Gamemode.fractionMultiplication:
+        return FractionMultiplication();
+      case Gamemode.fractionAll:
+        return FractionEquation();
+    // EQUATION --------------------------------------------------------------
+      case Gamemode.equationAddition:
+        return EquationAddition();
+      case Gamemode.equationMultiplication:
+        return EquationMultiplication();
+      case Gamemode.equationAll:
+        return EquationFull();
+    // PERCENTAGE ------------------------------------------------------------
       case Gamemode.percentage:
         return Percentage();
       case Gamemode.sale:
@@ -75,10 +93,26 @@ abstract class Solvable {
   /// Prepares the question, the solution and the possible solution list.
   void prepare () {
     question = generateQuestion();
-    solution = generateSolution();
+
+    final bool noAnswer = random.nextDouble() < probaNoSolution;
+    if (noAnswer) {
+      solution = "Aucun des autres choix";
+    } else {
+      solution = generateSolution();
+    }
 
     possibleSolutions.add(solution);
-    for (int i = 0 ; i < fakeSolutionsLength ; i++) {
+
+    // If not in the "no answer" case, there's a chance the "no answer" appears
+    // as a fake solution.
+    // It has the same chance to appear as a fake solution than as the right
+    // solution so that the "no answer" stays balanced.
+    if (!noAnswer && random.nextDouble() < probaNoSolution) {
+      possibleSolutions.add("Aucun des autres choix");
+    }
+
+    int remainingFakeSolutions = fakeSolutionsLength - possibleSolutions.length + 1;
+    for (int i = 0 ; i < remainingFakeSolutions ; i++) {
       possibleSolutions.add(generateFakeSolution());
     }
 
@@ -93,37 +127,5 @@ abstract class Solvable {
 
   /// How to generate a fake solution.
   String generateFakeSolution();
-
-}
-
-
-/// A mixin to add the ability to handle usual fake values.
-///
-/// It provides a list of fake solutions and a probability of picking one instead
-/// of generating a generic fake solution.
-mixin UsualFakes on Solvable {
-
-  /// Some typical mistake people make when solving first degree equations.
-  final List<String> usualFakeSolutions = [];
-
-  /// Probability of using a usual fake solution
-  double probaOfUsingAnUsualFakeSolution = 0.4;
-
-  @override
-  String generateFakeSolution() {
-    if (usualFakeSolutions.isNotEmpty
-        && random.nextDouble() < probaOfUsingAnUsualFakeSolution
-    ) {
-      usualFakeSolutions.shuffle();
-      final String fakeSolution = usualFakeSolutions.first;
-      usualFakeSolutions.removeAt(0);
-      return fakeSolution;
-    } else {
-      return defaultFakeSolution();
-    }
-  }
-
-  /// Generates a generic fake solution.
-  String defaultFakeSolution();
 
 }

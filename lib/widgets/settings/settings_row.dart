@@ -1,8 +1,7 @@
 // Flutter dependencies
 import "package:flutter/material.dart";
-import 'package:get/get.dart';
 import "package:x_containers/x_containers.dart";
-import 'package:zequas/utils/globals.dart';
+import "package:zequas/utils/globals.dart";
 
 /// A row used to display settings in a uniformized way.
 class SettingsRow extends StatelessWidget {

@@ -1,10 +1,6 @@
 // Package dependencies
-import "dart:math";
-
-// Package dependencies
 import "package:flutter/material.dart";
 import "package:flutter_emoji/flutter_emoji.dart";
-import "package:fraction/fraction.dart";
 
 // Project dependencies
 import "package:zequas/classes/game.dart";
@@ -117,36 +113,3 @@ Color cSecondary = const Color(0xFFEF596C);
 
 // FUNCTIONS ===================================================================
 
-/// An extension on the [Fraction] class to display decimal strings instead of
-/// simple fractions.
-extension AutoString on Fraction {
-
-  /// Returns a string instead of a simple fraction if possible, and a regular
-  /// fraction otherwise.
-  String autoString ({int allowedDecimals = 2}) {
-    final double allowedError = pow(10, -(10 - allowedDecimals)).toDouble();
-    final double boostedValue = pow(10, allowedDecimals).toDouble() * toDouble();
-    if ((boostedValue - boostedValue.truncateToDouble()).abs() < allowedError) {
-      // print("printing ${toDouble()} instead of $this");
-      return toDouble().toString();
-    } else {
-      return reduce().toString();
-    }
-  }
-}
-
-/// Return a random Fraction
-Fraction randomFraction({
-  int start = 0,
-  required int end,
-  int decimals = 0,
-  bool canBeZero = false,
-}) {
-  final Random random = Random();
-  int scale = pow(10, decimals).toInt();
-  int numerator = 0;
-  while (numerator == 0) {
-    numerator = random.nextInt((end - start) * scale) + start * scale;
-  }
-  return Fraction(numerator, scale);
-}

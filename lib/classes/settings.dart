@@ -51,11 +51,9 @@ class Settings extends GetxController {
 
 
     // All done.
-    Timer(const Duration(seconds: 3), () {
-      loaded.value = true;
-      print("Settings loaded");
-      update();
-    });
+    loaded.value = true;
+    print("Settings loaded");
+    update();
   }
 
 // METHODS ===================================================================
@@ -63,22 +61,22 @@ class Settings extends GetxController {
   /// Performs a check on the value of [gameLength] then save it to memory.
   void saveGameLength (int value) {
     print("saving game length");
-      if (value < 3) {
-        gameLength.value = 3;
-      } else if (value > 20) {
-        gameLength.value = 20;
-      }
+    if (value < 3) {
+      gameLength.value = 3;
+    } else if (value > 20) {
+      gameLength.value = 20;
+    }
 
     _prefs.setInt("gameLength", value);
   }
 
   /// Performs a check on the value of [saveNumberOfPossibleSolutions] then save it to memory.
   void saveNumberOfPossibleSolutions (int value) {
-      if (value < 3) {
-        numberOfPossibleSolutions.value = 3;
-      } else if (value > 6) {
-        numberOfPossibleSolutions.value = 6;
-      }
+    if (value < 3) {
+      numberOfPossibleSolutions.value = 3;
+    } else if (value > 6) {
+      numberOfPossibleSolutions.value = 6;
+    }
 
     _prefs.setInt("numberOfPossibleSolutions", value);
   }

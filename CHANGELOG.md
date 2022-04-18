@@ -1,0 +1,18 @@
+## 1.0.2
+
+- Added support for fractions
+- Added a "no answer" scenario
+- Reworked the handling of fractions (including when used for equations)
+
+## 1.0.1
+
+- Added a splash screen
+- Added support for percentage
+- Added settings saved through SharedPreferences
+- Replaced layout globals with the XContainers package 
+
+## 1.0.0
+
+- Created the structure of the game
+- Added support for equations
+- Added game history and stats
