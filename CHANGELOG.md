@@ -1,3 +1,9 @@
+## 1.0.3
+
+- Added a score function
+- Added a launcher icon
+- Added a splash screen
+
 ## 1.0.2
 
 - Added support for fractions
