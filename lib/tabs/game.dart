@@ -145,11 +145,7 @@ class TabGame extends StatelessWidget {
   /// Reset the colors and displays the next question.
   void nextQuestion () {
     resetColors();
-    if (game.playingLastTurn) {
-      Get.off(() => GameSummary());
-    } else {
-      game.goToNextTurn();
-    }
+    game.goToNextTurn();
   }
 
   // WIDGETS ===================================================================

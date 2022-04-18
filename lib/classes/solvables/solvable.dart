@@ -62,7 +62,6 @@ abstract class Solvable {
     Gamemode mode = Gamemode.none,
     int? seed,
   }) {
-    print("b $mode");
     switch (mode) {
     // FRACTION --------------------------------------------------------------
       case Gamemode.fractionAddition:

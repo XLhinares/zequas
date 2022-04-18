@@ -5,12 +5,8 @@ import "package:flutter_emoji/flutter_emoji.dart";
 // Project dependencies
 import "package:zequas/classes/game.dart";
 import "package:zequas/classes/settings.dart";
-import "package:zequas/classes/user.dart";
 
 // SINGLETONS ==================================================================
-
-/// The user of the app.
-User user = User();
 
 /// In-app representation of the game being played.
 Game game = Game();
@@ -32,7 +28,6 @@ List<String> emojis = [
   emojiParser.emojify(":tiger2:"),
   emojiParser.emojify(":leopard:"),
   emojiParser.emojify(":rabbit2:"),
-  emojiParser.emojify(":black_cat:"),
   emojiParser.emojify(":cat2:"),
   emojiParser.emojify(":dragon:"),
   emojiParser.emojify(":crocodile:"),
@@ -88,7 +83,6 @@ List<String> emojis = [
   emojiParser.emojify(":frog:"),
   emojiParser.emojify(":hamster:"),
   emojiParser.emojify(":wolf:"),
-  emojiParser.emojify(":polar_bear:"),
   emojiParser.emojify(":bear:"),
   emojiParser.emojify(":panda_face:"),
   emojiParser.emojify(":chipmunk:"),

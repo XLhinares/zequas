@@ -37,25 +37,26 @@ class GameStats extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                "Score:",
-                style: Get.textTheme.titleMedium,
-              ),
-              Text(
-                score.toString(),
-                style: Get.textTheme.titleMedium,
-              ),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
                 "Taux de réussite:",
-                style: Get.textTheme.titleSmall,
+                style: Get.textTheme.titleMedium,
               ),
               Text(
                 "$success %",
                 style: Get.textTheme.titleMedium,
+              ),
+            ],
+          ),
+          XLayout.verticalXS,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                "Score:",
+                style: Get.textTheme.titleSmall,
+              ),
+              Text(
+                score.toString(),
+                style: Get.textTheme.titleSmall,
               ),
             ],
           ),
