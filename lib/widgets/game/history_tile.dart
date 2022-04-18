@@ -17,7 +17,7 @@ class HistoryTile extends StatelessWidget {
   final String solution;
 
   /// The number of attempts it took the user to find the solution.
-  final String tries  ;
+  final int tries  ;
 
   // CONSTRUCTOR ===============================================================
 

@@ -1,11 +1,15 @@
 // Package dependencies
+import 'dart:collection';
+
 import "package:get/get.dart";
 
 // Project dependencies
 import "package:zequas/classes/solvables/solvable.dart";
 import "package:zequas/tabs/game.dart";
 import "package:zequas/classes/gamemode.dart";
+import 'package:zequas/tabs/game_summary.dart';
 import "package:zequas/utils/globals.dart";
+import "package:zequas/classes/archived_turn.dart";
 
 /// The in-app representation of a game.
 ///
@@ -26,10 +30,10 @@ class Game extends GetxController {
   /// a new game starts.
   final List<Solvable> _turns = [];
 
-  final List<int> _history = [];
+  final List<ArchivedTurn> _history = [];
 
   /// The index of the current turn.
-  int _index = 0;
+  int _index = -1;
 
   // GETTERS ===================================================================
 
@@ -58,6 +62,11 @@ class Game extends GetxController {
   /// Instead, the method [submitAnswer] returns true or false.
   String get _solution => _currentTurn.solution;
 
+  // GETTERS ===================================================================
+
+  /// The archives of the game turns.
+  UnmodifiableListView<ArchivedTurn> get history => UnmodifiableListView(_history);
+
   // CONSTRUCTOR ===============================================================
 
   /// The value of the singleton.
@@ -78,6 +87,9 @@ class Game extends GetxController {
     print("a: $mode");
     this.mode = mode;
     _prepareNewGame();
+
+    // Manually start tracking the first turn.
+    _history[0].start();
     Get.to(() => TabGame());
   }
 
@@ -88,47 +100,46 @@ class Game extends GetxController {
     _history.clear();
 
     for (int i = 0 ; i < settings.gameLength.value ; i++) {
-      _turns.add(Solvable.fromMode(
+
+      final Solvable turn = Solvable.fromMode(
         mode: mode,
         seed: i,
-      ));
-      _history.add(1);
+      );
+      _turns.add(turn);
+      _history.add(ArchivedTurn(
+        question: turn.question,
+        solution: turn.solution,
+      ),);
     }
   }
 
   /// Goes to the next turn index and updates the possible [GetBuilder].
   void goToNextTurn () {
-    _index++;
+    _history[_index].end();
+
+    if (playingLastTurn) {
+      Get.off(() => GameSummary());
+    } else {
+      _index++;
+      _history[_index].start();
+    }
     update();
   }
 
   /// Goes to the next turn index and updates the possible [GetBuilder].
   void goToEnd () {
-    for (int i = _index ; i < _turns.length ; i++) {
-      _history[i] = 0;
-    }
     _index = _turns.length - 1;
   }
 
   /// Checks if an answer is right
   bool submitAnswer(String answer) {
     print("$answer & $_solution");
+    _history[_index].newAttempt();
     if (_solution == answer) {
       return true;
     } else {
-      _history[_index]++;
       return false;
     }
   }
-
-  /// Returns the history the last played game.
-  List<Map<String, String>> get history => List.generate(
-    _index + 1,
-        (index) => {
-      "question": _turns[index].question,
-      "solution": _turns[index].solution,
-      "tries": _history[index].toString(),
-    },
-  );
 
 }

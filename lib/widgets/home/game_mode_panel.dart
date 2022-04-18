@@ -82,7 +82,7 @@ class GamemodePanel extends StatelessWidget {
                       mode.example,
                       style: Get.textTheme.bodySmall!.copyWith(
                         // color: Colors.black.withOpacity(0.8),
-                        color: cSecondary,
+                        color: DefaultColors.secondary,
                       ),
                     ),
                   ],

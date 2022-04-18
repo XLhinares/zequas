@@ -10,6 +10,7 @@ import "package:zequas/utils/globals.dart";
 import "package:zequas/widgets/game/game_stats.dart";
 import "package:zequas/widgets/game/history_tile.dart";
 import "package:zequas/widgets/layout/scaffold_fit.dart";
+import "package:zequas/classes/archived_turn.dart";
 
 /// The summary of the game that was just played.
 class GameSummary extends StatelessWidget {
@@ -17,7 +18,7 @@ class GameSummary extends StatelessWidget {
   // VARIABLES =================================================================
 
   /// The history of the last game.
-  late final List<Map<String, String>> history;
+  late final List<ArchivedTurn> history;
 
   /// The score obtained during the last game.
   late final int score;
@@ -33,33 +34,18 @@ class GameSummary extends StatelessWidget {
     history = game.history;
 
     int points = 0;
-    for (final Map<String, String> turn in history) {
-      final int tries = int.parse(turn["tries"]!);
-      if (tries <= 0) {
-        // The question wasn't answered, no points given.
-      } else if (tries <= 1) {
-        // Add 5 point below 1 try.
-        points += 5;
-      } else if (tries <= 2) {
-        // Add 3 point below 3 tries.
-        points += 3;
-      } else if (tries <= 4) {
-        // Add 2 point below 5 tries.
-        points += 2;
-      } else if (tries <= 10) {
-        // Add 1 point below 11 tries
-        points += 1;
-      } else {
-        // Don't add point above 10 tries.
-      }
+    int score = 0;
+
+    for (final ArchivedTurn turn in history) {
+      points += turn.points;
+      score += turn.score;
+
+      print("Turn lasted ${turn.duration}ms");
+      print("It earned ${turn.points} points and ${turn.score} score");
     }
 
-    print("points: $points");
-    print("max points: ${history.length * 5}");
     success = (100 * points / (history.length * 5)).round();
-
-    //todo: a real score function taking time into account
-    score = success * 100;
+    this.score = score;
   }
 
   // BUILD =====================================================================
@@ -84,9 +70,9 @@ class GameSummary extends StatelessWidget {
                 itemBuilder: (BuildContext context, int index) => index == 0
                     ? GameStats(score: score, success: success,)
                     : HistoryTile(
-                  question: history[index - 1]["question"]!,
-                  solution: history[index - 1]["solution"]!,
-                  tries: history[index - 1]["tries"]!,
+                  question: history[index - 1].question,
+                  solution: history[index - 1].solution,
+                  tries: history[index - 1].attempts,
                 ),
               ),
             ),

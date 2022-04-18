@@ -130,7 +130,7 @@ extension SolvableFraction on Fraction {
   String asString ({
     int allowedDecimals = -1,
     bool forceDouble = false,
-    bool reduce = false,
+    bool reduce = true,
   }) {
 
     if (forceDouble) {

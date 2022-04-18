@@ -42,9 +42,9 @@ class FractionAddition extends Solvable with UsualFakes, Fractions {
   @override
   String generateQuestion() {
     if (_b.toDouble() < 0) {
-      return "${_a.toString()} - ${_b.negate().toString()} = $randomEmoji";
+      return "${_a.toString()} - ${_b.negate().toString()} = $randomVariable";
     } else {
-      return "${_a.toString()} + ${_b.toString()} = $randomEmoji";
+      return "${_a.toString()} + ${_b.toString()} = $randomVariable";
     }
   }
 
