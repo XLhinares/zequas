@@ -53,9 +53,11 @@ class TabGame extends StatelessWidget {
               builder: (_) => Column(
                 children: [
                   Expanded(
+                    // FrameFit does not appear earlier in the tree so that the
+                    // progress bar can fill the whole width.
                     child: FrameFit(
                       padding: EdgeInsets.symmetric(
-                        horizontal: Get.width * 0.1,
+                        horizontal: xPaddingM,
                       ),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
