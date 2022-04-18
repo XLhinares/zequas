@@ -58,9 +58,9 @@ class FractionEquation extends Solvable with UsualFakes, Fractions {
   @override
   String generateQuestion() {
     if (_b.toDouble() < 0) {
-      return "$_as * $randomEmoji - ${_b.negate().asString()} = $_cs";
+      return "$_as * $randomVariable - ${_b.negate().asString()} = $_cs";
     } else {
-      return "$_as * $randomEmoji + $_bs = $_cs";
+      return "$_as * $randomVariable + $_bs = $_cs";
     }
   }
 

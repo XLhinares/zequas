@@ -58,9 +58,9 @@ class EquationFull extends Solvable with UsualFakes, Decimals {
   @override
   String generateQuestion() {
     if (_b.toDouble() < 0) {
-      return "$_as * $randomEmoji - ${_b.negate().asString(allowedDecimals: 2)} = $_cs";
+      return "$_as * $randomVariable - ${_b.negate().asString(allowedDecimals: 2)} = $_cs";
     } else {
-      return "$_as * $randomEmoji + $_bs = $_cs";
+      return "$_as * $randomVariable + $_bs = $_cs";
     }
   }
 

@@ -1,5 +1,6 @@
 // Flutter dependencies
 import "package:flutter/material.dart";
+import "package:get/get.dart";
 import "package:x_containers/x_containers.dart";
 import "package:zequas/utils/globals.dart";
 
@@ -33,12 +34,12 @@ class SettingsRow extends StatelessWidget {
     required String name,
     String description = "",
     List<Widget> actions = const <Widget>[],
-    required Widget separator,
+    Widget? separator,
   }) {
     final List<Widget> separatedActions = [];
     for (var item in actions) {
       separatedActions.add(item);
-      separatedActions.add(separator);
+      separatedActions.add(separator ?? XLayout.horizontalS);
     }
     separatedActions.removeLast();
 
@@ -54,15 +55,31 @@ class SettingsRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return XCard(
-      color: cPrimary,
+      color: DefaultColors.boxWhite,
       margin: EdgeInsets.symmetric(vertical: xPaddingXS),
       padding: EdgeInsets.all(xPaddingS),
+      enableShadow: false,
       // density: xPaddingM,
-      title: Text(name,),
+      title: Text(
+        name,
+        style: Get.textTheme.bodyMedium!.copyWith(
+            color: DefaultColors.textBlack
+        ),
+      ),
       subtitle: description.isEmpty
           ? null
-          : Text(description,),
-      trailing: Row(children: actions),
+          : Text(
+        description,
+        style: Get.textTheme.bodySmall!.copyWith(
+            color: DefaultColors.textBlack
+        ),
+      ),
+      trailing: DefaultTextStyle(
+        style: Get.textTheme.bodyMedium!.copyWith(
+          color: DefaultColors.textBlack,
+        ),
+          child: Row(children: actions)
+      ),
     );
   }
 

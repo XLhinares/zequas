@@ -50,7 +50,7 @@ class EquationMultiplication extends Solvable with UsualFakes, Decimals {
 
   @override
   String generateQuestion() {
-    return "${_a.asString(allowedDecimals: 1)} * $randomEmoji = ${_b.asString(allowedDecimals: 2)}";
+    return "${_a.asString(allowedDecimals: 1)} * $randomVariable = ${_b.asString(allowedDecimals: 2)}";
   }
 
   @override

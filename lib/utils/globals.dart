@@ -100,16 +100,32 @@ String get randomEmoji {
   return emojis.first;
 }
 
+/// A random emoji from the [emojis] list or a "x", according to [settings.emojifyQuestions].
+String get randomVariable {
+  if (settings.emojifyQuestions.value) {
+    return randomEmoji;
+  } else {
+    return "x";
+  }
+}
+
 // COLOR SCHEME ================================================================
 
-/// The primary color of the app.
-Color cBackground = const Color(0xFF689BA6);
+/// An extension on the [Colors] class to add the colors of this theme.
+extension DefaultColors on Colors {
 
-/// The secondary color of the app.
-Color cPrimary = const Color(0xFFE0AA3A);
+  /// The primary color of the app.
+  static Color background = const Color(0xFF689BA6);
 
-/// The accent color of the app.
-Color cSecondary = const Color(0xFFEF596C);
+  /// The secondary color of the app.
+  static Color primary = const Color(0xFFE0AA3A);
 
-// FUNCTIONS ===================================================================
+  /// The accent color of the app.
+  static Color secondary = const Color(0xFFEF596C);
 
+  /// The color used for black text.
+  static Color textBlack = Colors.black.withOpacity(0.7);
+
+  /// The color used for black text.
+  static Color boxWhite = Colors.white.withOpacity(0.7);
+}

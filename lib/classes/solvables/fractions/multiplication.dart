@@ -58,7 +58,7 @@ class FractionMultiplication extends Solvable with UsualFakes, Fractions {
 
   @override
   String generateQuestion() {
-    return "${_a.asString()} * $randomEmoji = ${_b.asString()}";
+    return "${_a.asString()} * $randomVariable = ${_b.asString()}";
   }
 
   @override

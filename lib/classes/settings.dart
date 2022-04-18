@@ -9,17 +9,24 @@ class Settings extends GetxController {
 
   // VARIABLES =================================================================
 
+  // META ----------------------------------------------------------------------
+
   /// Whether the database was loaded.
   final RxBool loaded = false.obs;
 
   /// The [SharedPreferences] object that keeps track of everything.
   late final SharedPreferences _prefs;
 
+  // ACTUAL --------------------------------------------------------------------
+
   /// The number of turns in a game.
   RxInt gameLength = RxInt(5);
 
-  ///The number of possible solutions to a given solvable.
+  /// The number of possible solutions to a given solvable.
   RxInt numberOfPossibleSolutions = RxInt(4);
+
+  /// Whether to show emojis rather than "x" in the relevant questions.
+  RxBool emojifyQuestions = RxBool(true);
 
   // CONSTRUCTOR ===============================================================
 
@@ -42,12 +49,14 @@ class Settings extends GetxController {
     // Instantiating variables.
     _prefs = await SharedPreferences.getInstance();
 
-    gameLength = RxInt(_prefs.getInt("gameLength") ?? 4);
-    numberOfPossibleSolutions = RxInt(_prefs.getInt("numberOfPossibleSolutions") ?? 4);
+    gameLength.value = _prefs.getInt("gameLength") ?? 4;
+    numberOfPossibleSolutions.value = _prefs.getInt("numberOfPossibleSolutions") ?? 4;
+    emojifyQuestions.value = _prefs.getBool("emojifyQuestions") ?? true;
 
     // Setting up workers.
     ever<int>(gameLength, saveGameLength);
     ever<int>(numberOfPossibleSolutions, saveNumberOfPossibleSolutions);
+    ever<bool>(emojifyQuestions, saveEmojifyQuestions);
 
 
     // All done.
@@ -79,5 +88,10 @@ class Settings extends GetxController {
     }
 
     _prefs.setInt("numberOfPossibleSolutions", value);
+  }
+
+  /// Saves the value of [emojifyQuestions] to memory.
+  void saveEmojifyQuestions (bool value) {
+    _prefs.setBool("emojifyQuestions", value);
   }
 }

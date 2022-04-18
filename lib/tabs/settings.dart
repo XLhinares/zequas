@@ -8,6 +8,7 @@ import "package:x_containers/x_containers.dart";
 // Project dependencies
 import "package:zequas/utils/globals.dart";
 import "package:zequas/widgets/layout/scaffold_fit.dart";
+import "package:zequas/widgets/settings/panel.dart";
 import "package:zequas/widgets/settings/settings_row.dart";
 
 /// A tab where the user can find and edit the main app settings.
@@ -34,46 +35,60 @@ class TabSettings extends StatelessWidget {
         children: [
           // GAME LENGTH -------------------------------------------------------
 
-          ShadowContainer(
-            color: Get.theme.colorScheme.secondary,
-            child: Text("Paramètres de jeu",
-            style: Get.textTheme.titleSmall,
-            ),
-          ),
-          XLayout.verticalM,
+          SettingsPanel(
+            title: "Paramètres de jeu",
+            description: "Les paramètres affectant la manière dont une partie se déroule.",
+            settings: [
+              SettingsRow.separated(
+                name: "Nombre de questions:",
+                // description: "Le nombre de questions qui seront posées au cours d'une partie.",
+                actions: [
+                  GestureDetector(
+                    onTap: () => settings.gameLength.value--,
+                    child: Icon(Icons.remove, color: DefaultColors.textBlack,),
+                  ),
+                  Obx(() => Text(settings.gameLength.toString())),
+                  GestureDetector(
+                    onTap: () => settings.gameLength.value++,
+                    child: Icon(Icons.add, color: DefaultColors.textBlack,),
+                  ),
+                ],
+              ),
+              // NUMBER OF POSSIBLE SOLUTIONS
+              SettingsRow.separated(
+                name: "Nombre de choix:",
+                // description: "Le nombres de potentielles solutions proposées à chaque tour.",
+                actions: [
+                  GestureDetector(
+                    onTap: () => settings.numberOfPossibleSolutions.value--,
+                    child: Icon(Icons.remove, color: DefaultColors.textBlack,),
+                  ),
+                  SizedBox(
+                    width: xPaddingM,
+                    child: Center(
+                      child: Obx(() => Text(settings.numberOfPossibleSolutions.toString())),
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () => settings.numberOfPossibleSolutions.value++,
+                    child: Icon(Icons.add, color: DefaultColors.textBlack,),
+                  ),
+                ],
+              ),
+              SettingsRow(
+                name: "Emojiser les questions:",
+                description: "Montrer un emoji plutôt que 'x' dans les questions.",
+                actions: [
+                  Obx(() => Checkbox(
+                    value: settings.emojifyQuestions.value,
+                    onChanged: (value) => settings.emojifyQuestions.value = value ?? false,
+                  ),),
+                ],
+              )
+            ],
+          )
 
-          SettingsRow.separated(
-            name: "Nombre de questions:",
-            // description: "Le nombre de questions qui seront posées au cours d'une partie.",
-            separator: XLayout.horizontalS,
-            actions: [
-              GestureDetector(
-                onTap: () => settings.gameLength.value--,
-                child: const Icon(Icons.remove),
-              ),
-              Obx(() => Text(settings.gameLength.toString())),
-              GestureDetector(
-                onTap: () => settings.gameLength.value++,
-                child: const Icon(Icons.add),
-              ),
-            ],
-          ),
-          // NUMBER OF POSSIBLE SOLUTIONS
-          SettingsRow.separated(
-            name: "Nombre de choix:",
-            separator: XLayout.horizontalS,
-            actions: [
-              GestureDetector(
-                onTap: () => settings.numberOfPossibleSolutions.value--,
-                child: const Icon(Icons.remove),
-              ),
-              Obx(() => Text(settings.numberOfPossibleSolutions.toString())),
-              GestureDetector(
-                onTap: () => settings.numberOfPossibleSolutions.value++,
-                child: const Icon(Icons.add),
-              ),
-            ],
-          ),
+
 
         ],
       ),
