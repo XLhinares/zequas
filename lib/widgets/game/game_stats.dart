@@ -30,7 +30,6 @@ class GameStats extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ShadowContainer(
-      margin: EdgeInsets.all(xPaddingS),
       child: Column(
         children: [
           Row(

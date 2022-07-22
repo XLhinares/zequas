@@ -59,21 +59,22 @@ class GameSummary extends StatelessWidget {
           // MAIN WINDOW -------------------------------------------------------
           Positioned.fill(
             child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: xPaddingM),
-              child: ListView.builder(
+              padding: EdgeInsets.symmetric(horizontal: XLayout.paddingM),
+              child: ListView.separated(
                 padding: EdgeInsets.only(
                   top: Get.height * 0.1,
                   bottom: Get.height * 0.15,
                 ),
                 physics: const BouncingScrollPhysics(),
                 itemCount: history.length + 1,
-                itemBuilder: (BuildContext context, int index) => index == 0
+                itemBuilder: (context, index) => index == 0
                     ? GameStats(score: score, success: success,)
                     : HistoryTile(
                   question: history[index - 1].question,
                   solution: history[index - 1].solution,
                   tries: history[index - 1].attempts,
                 ),
+                separatorBuilder: (context, index) => XLayout.verticalS,
               ),
             ),
           ),
@@ -84,7 +85,7 @@ class GameSummary extends StatelessWidget {
             left: 0,
             right: 0,
             child: InkContainer(
-              margin: EdgeInsets.all(xPaddingM),
+              margin: EdgeInsets.all(XLayout.paddingM),
               onTap: () => Get.back(),
               child: Text(
                 "Retour au menu",

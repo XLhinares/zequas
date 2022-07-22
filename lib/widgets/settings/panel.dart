@@ -43,7 +43,7 @@ class SettingsPanel extends StatelessWidget {
       child: ExpandablePanel(
         controller: _controller,
         header: Padding(
-          padding: EdgeInsets.only(bottom: xPaddingM),
+          padding: EdgeInsets.only(bottom: XLayout.paddingM),
           child: Text(
             title,
             style: Get.textTheme.titleSmall,

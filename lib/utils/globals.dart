@@ -1,6 +1,7 @@
 // Package dependencies
 import "package:flutter/material.dart";
 import "package:flutter_emoji/flutter_emoji.dart";
+import "package:x_containers/x_containers.dart";
 
 // Project dependencies
 import "package:zequas/classes/game.dart";
@@ -107,19 +108,15 @@ String get randomVariable {
 
 /// An extension on the [Colors] class to add the colors of this theme.
 extension DefaultColors on Colors {
-
-  /// The primary color of the app.
-  static Color background = const Color(0xFF689BA6);
-
-  /// The secondary color of the app.
-  static Color primary = const Color(0xFFE0AA3A);
-
-  /// The accent color of the app.
-  static Color secondary = const Color(0xFFEF596C);
-
   /// The color used for black text.
   static Color textBlack = Colors.black.withOpacity(0.7);
-
-  /// The color used for black text.
-  static Color boxWhite = Colors.white.withOpacity(0.7);
 }
+
+/// A pastel theme data.
+ThemeData themePastel = xTheme.getTheme(
+  primary: const Color(0xFFE0AA3A),
+  secondary: const Color(0xFFEF596C),
+  background: const Color(0xFF689BA6),
+  backgroundAlt: const Color(0xFF689BA6),
+  cardColor: Colors.white.withOpacity(0.7),
+);

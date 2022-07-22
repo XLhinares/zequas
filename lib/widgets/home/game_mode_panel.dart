@@ -42,7 +42,7 @@ class GamemodePanel extends StatelessWidget {
       child: ExpandablePanel(
         controller: _controller,
         header: Padding(
-          padding: EdgeInsets.only(bottom: xPaddingM),
+          padding: EdgeInsets.only(bottom: XLayout.paddingM),
           child: Text(
             title,
             style: Get.textTheme.titleSmall,
@@ -59,11 +59,11 @@ class GamemodePanel extends StatelessWidget {
           children: [
             ...displayedModes.map<Widget>(
                   (mode) => InkContainer(
-                margin: EdgeInsets.all(xPaddingXS,
+                margin: EdgeInsets.all(XLayout.paddingXS,
                 ),
                 padding: EdgeInsets.symmetric(
-                  vertical: xPaddingS,
-                  horizontal: xPaddingM,
+                  vertical: XLayout.paddingS,
+                  horizontal: XLayout.paddingM,
                 ),
                 enableShadow: false,
                 color: Colors.white70,
@@ -82,7 +82,7 @@ class GamemodePanel extends StatelessWidget {
                       mode.example,
                       style: Get.textTheme.bodySmall!.copyWith(
                         // color: Colors.black.withOpacity(0.8),
-                        color: DefaultColors.secondary,
+                        color: context.theme.colorScheme.secondary,
                       ),
                     ),
                   ],

@@ -39,10 +39,10 @@ class Home extends StatelessWidget {
           ),
         ],
       ),
-      padding: EdgeInsets.symmetric(horizontal: xPaddingM),
+      padding: EdgeInsets.symmetric(horizontal: XLayout.paddingM),
       body: ListView(
         physics: const BouncingScrollPhysics(),
-        padding: EdgeInsets.symmetric(vertical: xPaddingM),
+        padding: EdgeInsets.symmetric(vertical: XLayout.paddingM),
         children: [
           GamemodePanel(
             title: "Fractions",

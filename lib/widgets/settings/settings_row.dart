@@ -1,7 +1,11 @@
 // Flutter dependencies
 import "package:flutter/material.dart";
+
+// Package dependencies
 import "package:get/get.dart";
 import "package:x_containers/x_containers.dart";
+
+// Project dependencies
 import "package:zequas/utils/globals.dart";
 
 /// A row used to display settings in a uniformized way.
@@ -55,11 +59,10 @@ class SettingsRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return XCard(
-      color: DefaultColors.boxWhite,
-      margin: EdgeInsets.symmetric(vertical: xPaddingXS),
-      padding: EdgeInsets.all(xPaddingS),
+      margin: EdgeInsets.symmetric(vertical: XLayout.paddingXS),
+      padding: EdgeInsets.all(XLayout.paddingS),
       enableShadow: false,
-      // density: xPaddingM,
+      // density: XLayout.paddingM,
       title: Text(
         name,
         style: Get.textTheme.bodyMedium!.copyWith(

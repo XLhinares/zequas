@@ -35,8 +35,8 @@ class HistoryTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return XCard(
       padding: EdgeInsets.symmetric(
-        vertical: xPaddingS,
-        horizontal: xPaddingM,
+        vertical: XLayout.paddingS,
+        horizontal: XLayout.paddingM,
       ),
       title: Text(
         question,

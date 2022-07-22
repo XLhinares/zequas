@@ -1,5 +1,5 @@
 // Package dependencies
-import 'dart:collection';
+import "dart:collection";
 
 import "package:get/get.dart";
 
@@ -7,7 +7,7 @@ import "package:get/get.dart";
 import "package:zequas/classes/solvables/solvable.dart";
 import "package:zequas/tabs/game.dart";
 import "package:zequas/classes/gamemode.dart";
-import 'package:zequas/tabs/game_summary.dart';
+import "package:zequas/tabs/game_summary.dart";
 import "package:zequas/utils/globals.dart";
 import "package:zequas/classes/archived_turn.dart";
 

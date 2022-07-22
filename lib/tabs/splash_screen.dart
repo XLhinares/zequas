@@ -44,7 +44,7 @@ class SplashScreen extends StatelessWidget {
             opacity: opacity.value,
             duration: fadeOutTime,
             child: ShadowContainer(
-              margin: EdgeInsets.all(xPaddingM),
+              margin: EdgeInsets.all(XLayout.paddingM),
               height: Get.height * 0.2,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,

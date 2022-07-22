@@ -57,7 +57,7 @@ class TabGame extends StatelessWidget {
                     // progress bar can fill the whole width.
                     child: FrameFit(
                       padding: EdgeInsets.symmetric(
-                        horizontal: xPaddingM,
+                        horizontal: XLayout.paddingM,
                       ),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -94,7 +94,7 @@ class TabGame extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   IconButton(
-                    iconSize: xPaddingL,
+                    iconSize: XLayout.paddingL,
                     onPressed: () => showDialog(
                       context: context,
                       builder: (context) => CustomDialog(

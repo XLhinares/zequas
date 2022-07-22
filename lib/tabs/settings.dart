@@ -26,12 +26,12 @@ class TabSettings extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScaffoldFit(
-      padding: EdgeInsets.symmetric(horizontal: xPaddingM),
+      padding: EdgeInsets.symmetric(horizontal: XLayout.paddingM),
       appBar: AppBar(
         title: const Text("Paramètres"),
       ),
       body: ListView(
-        padding: EdgeInsets.symmetric(vertical: xPaddingM),
+        padding: EdgeInsets.symmetric(vertical: XLayout.paddingM),
         children: [
           // GAME LENGTH -------------------------------------------------------
 
@@ -64,7 +64,7 @@ class TabSettings extends StatelessWidget {
                     child: Icon(Icons.remove, color: DefaultColors.textBlack,),
                   ),
                   SizedBox(
-                    width: xPaddingM,
+                    width: XLayout.paddingM,
                     child: Center(
                       child: Obx(() => Text(settings.numberOfPossibleSolutions.toString())),
                     ),
