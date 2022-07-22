@@ -1,3 +1,8 @@
+## 1.1.0
+
+- Added: Github workflow for Flutter.
+- Added: An example for tests on Solvables.
+
 ### 1.0.4
 
 - Updated: the dependencies
