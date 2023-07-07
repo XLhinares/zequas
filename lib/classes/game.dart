@@ -1,15 +1,13 @@
-// Package dependencies
 import "dart:collection";
 
 import "package:get/get.dart";
 
-// Project dependencies
-import "package:zequas/classes/solvables/solvable.dart";
-import "package:zequas/tabs/game.dart";
-import "package:zequas/classes/gamemode.dart";
-import "package:zequas/tabs/game_summary.dart";
-import "package:zequas/utils/globals.dart";
-import "package:zequas/classes/archived_turn.dart";
+import "solvables/solvable.dart";
+import "../tabs/game.dart";
+import "gamemode.dart";
+import "../tabs/game_summary.dart";
+import "../utils/globals.dart";
+import "archived_turn.dart";
 
 /// The in-app representation of a game.
 ///

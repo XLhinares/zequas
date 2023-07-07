@@ -1,16 +1,12 @@
-// Flutter dependencies
 import "package:flutter/material.dart";
-
-// Package dependencies
 import "package:get/get.dart";
 import "package:x_containers/x_containers.dart";
 
-// Project dependencies
-import "package:zequas/utils/globals.dart";
-import "package:zequas/widgets/game/game_stats.dart";
-import "package:zequas/widgets/game/history_tile.dart";
-import "package:zequas/widgets/layout/scaffold_fit.dart";
-import "package:zequas/classes/archived_turn.dart";
+import "../utils/globals.dart";
+import "../widgets/game/game_stats.dart";
+import "../widgets/game/history_tile.dart";
+import "../widgets/layout/scaffold_fit.dart";
+import "../classes/archived_turn.dart";
 
 /// The summary of the game that was just played.
 class GameSummary extends StatelessWidget {
@@ -84,7 +80,7 @@ class GameSummary extends StatelessWidget {
             bottom: 0,
             left: 0,
             right: 0,
-            child: InkContainer(
+            child: XInkContainer(
               margin: EdgeInsets.all(XLayout.paddingM),
               onTap: () => Get.back(),
               child: Text(

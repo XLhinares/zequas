@@ -1,13 +1,9 @@
-// Flutter dependencies
 import "package:flutter/material.dart";
-
-// Package dependencies
 import "package:expandable/expandable.dart";
 import "package:get/get.dart";
 import "package:x_containers/x_containers.dart";
 
-// Project dependencies
-import "package:zequas/widgets/settings/settings_row.dart";
+import "settings_row.dart";
 
 /// A panel widget grouping some settings by category.
 class SettingsPanel extends StatelessWidget {
@@ -39,21 +35,21 @@ class SettingsPanel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ShadowContainer(
+    return XContainer(
       child: ExpandablePanel(
         controller: _controller,
         header: Padding(
           padding: EdgeInsets.only(bottom: XLayout.paddingM),
           child: Text(
             title,
-            style: Get.textTheme.titleSmall,
+            style: context.textTheme.titleSmall,
           ),
         ),
         collapsed: Visibility(
           visible: description.isNotEmpty,
           child: Text(
             description,
-            style: Get.textTheme.bodyMedium,
+            style: context.textTheme.bodyMedium,
           ),
         ),
         expanded: Column(

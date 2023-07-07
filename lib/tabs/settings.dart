@@ -1,15 +1,11 @@
-// Flutter dependencies
 import "package:flutter/material.dart";
-
-// Package dependencies
 import "package:get/get.dart";
 import "package:x_containers/x_containers.dart";
 
-// Project dependencies
-import "package:zequas/utils/globals.dart";
-import "package:zequas/widgets/layout/scaffold_fit.dart";
-import "package:zequas/widgets/settings/panel.dart";
-import "package:zequas/widgets/settings/settings_row.dart";
+import "../utils/globals.dart";
+import "../widgets/layout/scaffold_fit.dart";
+import "../widgets/settings/panel.dart";
+import "../widgets/settings/settings_row.dart";
 
 /// A tab where the user can find and edit the main app settings.
 class TabSettings extends StatelessWidget {

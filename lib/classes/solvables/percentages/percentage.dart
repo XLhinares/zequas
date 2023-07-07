@@ -1,4 +1,4 @@
-import "package:zequas/classes/solvables/solvable.dart";
+import "../solvable.dart";
 
 /// Solvable teaching how to find the percentage of a value.
 class Percentage extends Solvable with UsualFakes {

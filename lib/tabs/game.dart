@@ -1,19 +1,15 @@
-// Flutter dependencies
 import "dart:async";
 
 import "package:flutter/material.dart";
-
-// Package dependencies
 import "package:get/get.dart";
-import "package:x_containers/settings/x_layout.dart";
-import "package:zequas/tabs/game_summary.dart";
+import "package:x_containers/x_containers.dart";
 
-// Project dependencies
-import "package:zequas/utils/globals.dart";
-import "package:zequas/widgets/game/answer_tile.dart";
-import "package:zequas/widgets/layout/custom_dialog.dart";
-import "package:zequas/widgets/layout/frame_fit.dart";
-import "package:zequas/widgets/layout/scaffold_fit.dart";
+import "game_summary.dart";
+import "../utils/globals.dart";
+import "../widgets/game/answer_tile.dart";
+import "../widgets/layout/custom_dialog.dart";
+import "../widgets/layout/frame_fit.dart";
+import "../widgets/layout/scaffold_fit.dart";
 
 /// The game tab.
 ///
@@ -64,7 +60,7 @@ class TabGame extends StatelessWidget {
                         children: [
                           Text(
                             game.question,
-                            style: Get.theme.textTheme.titleMedium,
+                            style: context.textTheme.titleMedium,
                           ),
                           XLayout.verticalM,
                           ListView.separated(

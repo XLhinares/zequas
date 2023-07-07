@@ -1,11 +1,9 @@
-// Package dependencies
 import "package:flutter/material.dart";
 import "package:flutter_emoji/flutter_emoji.dart";
 import "package:x_containers/x_containers.dart";
 
-// Project dependencies
-import "package:zequas/classes/game.dart";
-import "package:zequas/classes/settings.dart";
+import "../classes/game.dart";
+import "../classes/settings.dart";
 
 // SINGLETONS ==================================================================
 

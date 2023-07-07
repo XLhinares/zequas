@@ -1,15 +1,11 @@
-// Flutter dependencies
 import "package:flutter/material.dart";
 import "package:get/get.dart";
-
-// Package dependencies
 import "package:x_containers/x_containers.dart";
 
-// Project dependencies
-import "package:zequas/tabs/settings.dart";
-import "package:zequas/classes/gamemode.dart";
-import "package:zequas/widgets/home/game_mode_panel.dart";
-import "package:zequas/widgets/layout/scaffold_fit.dart";
+import "settings.dart";
+import "../classes/gamemode.dart";
+import "../widgets/home/game_mode_panel.dart";
+import "../widgets/layout/scaffold_fit.dart";
 
 /// The home tab of the game.
 ///
