@@ -2,7 +2,7 @@
 import "dart:async";
 
 import "package:get/get.dart";
-import "package:shared_preferences/shared_preferences.dart";
+import "package:get_storage/get_storage.dart";
 
 /// A singleton handling the shared preferences and the memory of the app.
 class Settings extends GetxController {
@@ -15,7 +15,7 @@ class Settings extends GetxController {
   final RxBool loaded = false.obs;
 
   /// The [SharedPreferences] object that keeps track of everything.
-  late final SharedPreferences _prefs;
+  late final GetStorage _storage;
 
   // ACTUAL --------------------------------------------------------------------
 
@@ -47,11 +47,11 @@ class Settings extends GetxController {
 
   Future<void> _init () async {
     // Instantiating variables.
-    _prefs = await SharedPreferences.getInstance();
+    _storage = GetStorage();
 
-    gameLength.value = _prefs.getInt("gameLength") ?? 4;
-    numberOfPossibleSolutions.value = _prefs.getInt("numberOfPossibleSolutions") ?? 4;
-    emojifyQuestions.value = _prefs.getBool("emojifyQuestions") ?? true;
+    gameLength.value = _storage.read<int>("gameLength") ?? 4;
+    numberOfPossibleSolutions.value = _storage.read<int>("numberOfPossibleSolutions") ?? 4;
+    emojifyQuestions.value = _storage.read<bool>("emojifyQuestions") ?? true;
 
     // Setting up workers.
     ever<int>(gameLength, saveGameLength);
@@ -76,7 +76,7 @@ class Settings extends GetxController {
       gameLength.value = 20;
     }
 
-    _prefs.setInt("gameLength", value);
+    _storage.write("gameLength", value);
   }
 
   /// Performs a check on the value of [saveNumberOfPossibleSolutions] then save it to memory.
@@ -87,11 +87,11 @@ class Settings extends GetxController {
       numberOfPossibleSolutions.value = 6;
     }
 
-    _prefs.setInt("numberOfPossibleSolutions", value);
+    _storage.write("numberOfPossibleSolutions", value);
   }
 
   /// Saves the value of [emojifyQuestions] to memory.
   void saveEmojifyQuestions (bool value) {
-    _prefs.setBool("emojifyQuestions", value);
+    _storage.write("emojifyQuestions", value);
   }
 }

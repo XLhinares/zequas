@@ -1,7 +1,4 @@
-// Flutter dependencies
 import "package:flutter/material.dart";
-
-// Package dependencies
 import "package:get/get.dart";
 import "package:x_containers/x_containers.dart";
 
@@ -35,13 +32,13 @@ class AnswerTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkContainer(
+    return XInkContainer(
       color: color,
       enableSplash: false,
       onTap: onTap,
       child: Text(
           text,
-        style: Get.textTheme.bodyMedium,
+        style: context.textTheme.bodyMedium,
       ),
     );
   }

@@ -1,8 +1,5 @@
-// Flutter dependencies
 import "package:flutter/material.dart";
 import "package:get/get.dart";
-
-// Package dependencies
 import "package:x_containers/x_containers.dart";
 
 /// A container displaying the stats of the player during the last game
@@ -29,7 +26,7 @@ class GameStats extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ShadowContainer(
+    return XContainer(
       child: Column(
         children: [
           Row(
@@ -37,11 +34,11 @@ class GameStats extends StatelessWidget {
             children: [
               Text(
                 "Taux de réussite:",
-                style: Get.textTheme.titleMedium,
+                style: context.textTheme.titleMedium,
               ),
               Text(
                 "$success %",
-                style: Get.textTheme.titleMedium,
+                style: context.textTheme.titleMedium,
               ),
             ],
           ),
@@ -51,11 +48,11 @@ class GameStats extends StatelessWidget {
             children: [
               Text(
                 "Score:",
-                style: Get.textTheme.titleSmall,
+                style: context.textTheme.titleSmall,
               ),
               Text(
                 score.toString(),
-                style: Get.textTheme.titleSmall,
+                style: context.textTheme.titleSmall,
               ),
             ],
           ),

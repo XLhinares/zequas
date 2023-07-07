@@ -1,7 +1,7 @@
-// Package dependencies
 import "package:fraction/fraction.dart";
-import "package:zequas/classes/solvables/solvable.dart";
-import "package:zequas/utils/globals.dart";
+
+import "../solvable.dart";
+import "../../../utils/globals.dart";
 
 /// In-app representation of a first-degree equation `a * x + b = c`.
 class FractionEquation extends Solvable with UsualFakes, Fractions {

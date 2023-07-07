@@ -1,14 +1,10 @@
-// Flutter dependencies
 import "package:flutter/material.dart";
-
-// Package dependencies
 import "package:expandable/expandable.dart";
 import "package:get/get.dart";
 import "package:x_containers/x_containers.dart";
 
-// Project dependencies
-import "package:zequas/classes/gamemode.dart";
-import "package:zequas/utils/globals.dart";
+import "../../classes/gamemode.dart";
+import "../../utils/globals.dart";
 
 /// A panel to encompass a few gamemodes.
 class GamemodePanel extends StatelessWidget {
@@ -38,27 +34,27 @@ class GamemodePanel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ShadowContainer(
+    return XContainer(
       child: ExpandablePanel(
         controller: _controller,
         header: Padding(
           padding: EdgeInsets.only(bottom: XLayout.paddingM),
           child: Text(
             title,
-            style: Get.textTheme.titleSmall,
+            style: context.textTheme.titleSmall,
           ),
         ),
         collapsed: Visibility(
           visible: description.isNotEmpty,
           child: Text(
             description,
-            style: Get.textTheme.bodyMedium,
+            style: context.textTheme.bodyMedium,
           ),
         ),
         expanded: Column(
           children: [
             ...displayedModes.map<Widget>(
-                  (mode) => InkContainer(
+                  (mode) => XInkContainer(
                 margin: EdgeInsets.all(XLayout.paddingXS,
                 ),
                 padding: EdgeInsets.symmetric(
@@ -74,13 +70,13 @@ class GamemodePanel extends StatelessWidget {
                   children: [
                     Text(
                       mode.name,
-                      style: Get.textTheme.bodyMedium!.copyWith(
+                      style: context.textTheme.bodyMedium!.copyWith(
                         color: Colors.black.withOpacity(0.8),
                       ),
                     ),
                     Text(
                       mode.example,
-                      style: Get.textTheme.bodySmall!.copyWith(
+                      style: context.textTheme.bodySmall!.copyWith(
                         // color: Colors.black.withOpacity(0.8),
                         color: context.theme.colorScheme.secondary,
                       ),

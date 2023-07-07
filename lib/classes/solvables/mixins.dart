@@ -1,11 +1,8 @@
-// Flutter dependencies
 import "dart:math";
 
-// Package dependencies
 import "package:fraction/fraction.dart";
 
-// Project dependencies
-import "package:zequas/classes/solvables/solvable.dart";
+import "solvable.dart";
 
 // USUAL FAKES =================================================================
 

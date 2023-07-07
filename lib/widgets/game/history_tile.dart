@@ -40,15 +40,15 @@ class HistoryTile extends StatelessWidget {
       ),
       title: Text(
         question,
-        style: Get.textTheme.bodyMedium!.copyWith(color: Colors.black87),
+        style: context.textTheme.bodyMedium!.copyWith(color: Colors.black87),
       ),
-      subtitle: Text(
+      content: Text(
         "Solution: $solution",
-        style: Get.textTheme.bodySmall!.copyWith(color: Colors.black87),
+        style: context.textTheme.bodySmall!.copyWith(color: Colors.black87),
       ),
       trailing: Text(
         "$tries essais",
-        style: Get.textTheme.bodySmall!.copyWith(color: Colors.black87),
+        style: context.textTheme.bodySmall!.copyWith(color: Colors.black87),
       ),
     );
   }

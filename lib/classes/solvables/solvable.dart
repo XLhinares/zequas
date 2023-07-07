@@ -1,18 +1,16 @@
-// Flutter dependencies
 import "dart:math";
 
-// Project dependencies
-import "package:zequas/classes/gamemode.dart";
-import "package:zequas/classes/solvables/equations/addition.dart";
-import "package:zequas/classes/solvables/equations/equation.dart";
-import "package:zequas/classes/solvables/equations/multiplication.dart";
-import "package:zequas/classes/solvables/fractions/addition.dart";
-import "package:zequas/classes/solvables/fractions/equation.dart";
-import "package:zequas/classes/solvables/fractions/multiplication.dart";
-import "package:zequas/classes/solvables/percentages/percentage.dart";
-import "package:zequas/classes/solvables/percentages/sale.dart";
-import "package:zequas/classes/solvables/test.dart";
-import "package:zequas/utils/globals.dart";
+import "../gamemode.dart";
+import "equations/addition.dart";
+import "equations/equation.dart";
+import "equations/multiplication.dart";
+import "fractions/addition.dart";
+import "fractions/equation.dart";
+import "fractions/multiplication.dart";
+import "percentages/percentage.dart";
+import "percentages/sale.dart";
+import "test.dart";
+import "../../utils/globals.dart";
 
 export "mixins.dart";
 

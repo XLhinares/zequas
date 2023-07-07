@@ -1,12 +1,8 @@
-// Flutter dependencies
 import "package:flutter/material.dart";
-
-// Package dependencies
 import "package:get/get.dart";
 import "package:x_containers/x_containers.dart";
 
-// Project dependencies
-import "package:zequas/utils/globals.dart";
+import "../../utils/globals.dart";
 
 /// A row used to display settings in a uniformized way.
 class SettingsRow extends StatelessWidget {
@@ -65,20 +61,20 @@ class SettingsRow extends StatelessWidget {
       // density: XLayout.paddingM,
       title: Text(
         name,
-        style: Get.textTheme.bodyMedium!.copyWith(
+        style: context.textTheme.bodyMedium!.copyWith(
             color: DefaultColors.textBlack
         ),
       ),
-      subtitle: description.isEmpty
+      content: description.isEmpty
           ? null
           : Text(
         description,
-        style: Get.textTheme.bodySmall!.copyWith(
+        style: context.textTheme.bodySmall!.copyWith(
             color: DefaultColors.textBlack
         ),
       ),
       trailing: DefaultTextStyle(
-        style: Get.textTheme.bodyMedium!.copyWith(
+        style: context.textTheme.bodyMedium!.copyWith(
           color: DefaultColors.textBlack,
         ),
           child: Row(children: actions)

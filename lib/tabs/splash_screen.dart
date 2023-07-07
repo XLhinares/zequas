@@ -1,15 +1,12 @@
-// Flutter dependencies
 import "dart:async";
-import "package:flutter/material.dart";
 
-// Package dependencies
+import "package:flutter/material.dart";
 import "package:get/get.dart";
 import "package:x_containers/x_containers.dart";
 
-// Project dependencies
-import "package:zequas/tabs/home.dart";
-import "package:zequas/utils/globals.dart";
-import "package:zequas/widgets/layout/scaffold_fit.dart";
+import "home.dart";
+import "../utils/globals.dart";
+import "../widgets/layout/scaffold_fit.dart";
 
 /// The screen at the beginning of the app that loads the required components.
 ///
@@ -43,7 +40,7 @@ class SplashScreen extends StatelessWidget {
           AnimatedOpacity(
             opacity: opacity.value,
             duration: fadeOutTime,
-            child: ShadowContainer(
+            child: XContainer(
               margin: EdgeInsets.all(XLayout.paddingM),
               height: Get.height * 0.2,
               child: Column(
@@ -51,11 +48,11 @@ class SplashScreen extends StatelessWidget {
                 children: [
                   Text(
                     "Préparation de l'appli.",
-                    style: Get.textTheme.bodyMedium,
+                    style: context.textTheme.bodyMedium,
                   ),
                   XLayout.verticalM,
                   CircularProgressIndicator(
-                    color: Get.theme.colorScheme.secondary,
+                    color: context.theme.colorScheme.secondary,
                   ),
                 ],
               ),
