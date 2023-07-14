@@ -43,11 +43,11 @@ class HistoryTile extends StatelessWidget {
         style: context.textTheme.bodyMedium!.copyWith(color: Colors.black87),
       ),
       content: Text(
-        "Solution: $solution",
+        "solution".trParams({"solution": solution}),
         style: context.textTheme.bodySmall!.copyWith(color: Colors.black87),
       ),
       trailing: Text(
-        "$tries essais",
+        "attempt".trPluralParams("attempts", tries, {"attempts": tries.toString()}),
         style: context.textTheme.bodySmall!.copyWith(color: Colors.black87),
       ),
     );

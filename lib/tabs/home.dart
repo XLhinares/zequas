@@ -2,9 +2,9 @@ import "package:flutter/material.dart";
 import "package:get/get.dart";
 import "package:x_containers/x_containers.dart";
 
+import "../utils/globals.dart";
 import "settings.dart";
-import "../classes/gamemode.dart";
-import "../widgets/home/game_mode_panel.dart";
+import "../widgets/home/game_category_panel.dart";
 import "../widgets/layout/scaffold_fit.dart";
 
 /// The home tab of the game.
@@ -36,39 +36,14 @@ class Home extends StatelessWidget {
         ],
       ),
       padding: EdgeInsets.symmetric(horizontal: XLayout.paddingM),
-      body: ListView(
+      body: ListView.separated(
         physics: const BouncingScrollPhysics(),
         padding: EdgeInsets.symmetric(vertical: XLayout.paddingM),
-        children: [
-          GamemodePanel(
-            title: "Fractions",
-            description: "Trouver le résultat d'un calcul impliquant des fractions.",
-            displayedModes: const [
-              Gamemode.fractionAddition,
-              Gamemode.fractionMultiplication,
-              Gamemode.fractionAll,
-            ],
-          ),
-          XLayout.verticalM,
-          GamemodePanel(
-            title: "Équations",
-            description: "Trouver la valeur inconnue dans une équation simple.",
-            displayedModes: const [
-              Gamemode.equationAddition,
-              Gamemode.equationMultiplication,
-              Gamemode.equationAll,
-            ],
-          ),
-          XLayout.verticalM,
-          GamemodePanel(
-            title:"Pourcentages",
-            description: "Calculer un pourcentage ou une promotion.",
-            displayedModes: const [
-              Gamemode.percentage,
-              Gamemode.sale,
-            ],
-          ),
-        ],
+        itemCount: game.categories.length,
+        itemBuilder: (context, index) => GameCategoryPanel(
+          category: game.categories[index],
+        ),
+        separatorBuilder: (context, index) => XLayout.verticalM,
       ),
     );
   }

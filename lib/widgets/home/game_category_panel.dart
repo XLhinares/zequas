@@ -3,31 +3,23 @@ import "package:expandable/expandable.dart";
 import "package:get/get.dart";
 import "package:x_containers/x_containers.dart";
 
-import "../../classes/gamemode.dart";
+import "../../classes/game/game_category.dart";
 import "../../utils/globals.dart";
 
 /// A panel to encompass a few gamemodes.
-class GamemodePanel extends StatelessWidget {
+class GameCategoryPanel extends StatelessWidget {
 
   // CONSTRUCTOR ===============================================================
 
-  /// The title of the panel, summarizes the contents.
-  final String title;
-
-  /// The description of the contents of the panel.
-  final String description;
-
-  /// A list of the gamemodes featured in the panel.
-  final List<Gamemode> displayedModes;
+  /// The [GameCategory] to be displayed in this panel.
+  final GameCategory category;
 
   final ExpandableController _controller = ExpandableController(initialExpanded: true);
 
-  /// Returns an instance of [GamemodePanel] matching the given parameters.
-  GamemodePanel({
+  /// Returns an instance of [GameCategoryPanel] matching the given parameters.
+  GameCategoryPanel({
     Key? key,
-    required this.title,
-    this.description = "",
-    this.displayedModes = const [],
+    required this.category,
   }) : super(key: key);
 
   // BUILD =====================================================================
@@ -40,20 +32,20 @@ class GamemodePanel extends StatelessWidget {
         header: Padding(
           padding: EdgeInsets.only(bottom: XLayout.paddingM),
           child: Text(
-            title,
+            category.title.tr,
             style: context.textTheme.titleSmall,
           ),
         ),
         collapsed: Visibility(
-          visible: description.isNotEmpty,
+          visible: category.description.isNotEmpty,
           child: Text(
-            description,
+            category.description.tr,
             style: context.textTheme.bodyMedium,
           ),
         ),
         expanded: Column(
           children: [
-            ...displayedModes.map<Widget>(
+            ...category.modes.map<Widget>(
                   (mode) => XInkContainer(
                 margin: EdgeInsets.all(XLayout.paddingXS,
                 ),
@@ -69,13 +61,13 @@ class GamemodePanel extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      mode.name,
+                      mode.title.tr,
                       style: context.textTheme.bodyMedium!.copyWith(
                         color: Colors.black.withOpacity(0.8),
                       ),
                     ),
                     Text(
-                      mode.example,
+                      mode.description.tr,
                       style: context.textTheme.bodySmall!.copyWith(
                         // color: Colors.black.withOpacity(0.8),
                         color: context.theme.colorScheme.secondary,

@@ -1,3 +1,5 @@
+import "package:get/get.dart";
+
 import "../solvable.dart";
 
 /// Solvable teaching how to find the percentage of a value.
@@ -13,7 +15,8 @@ class Percentage extends Solvable with UsualFakes {
   late final double result;
 
   /// Returns a new percentage solvable instance.
-  Percentage() {
+  Percentage({super.localizationPrefix}) {
+
     percentage = random.nextInt(100);
     value = random.nextInt(100);
     result = value * percentage / 100;
@@ -33,7 +36,7 @@ class Percentage extends Solvable with UsualFakes {
 
   @override
   String generateQuestion() {
-    return "$percentage% de $value";
+    return "${localizationPrefix}percentage_of".trParams({"percentage": percentage.toString(), "value": value.toString()});
   }
 
   @override

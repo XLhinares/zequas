@@ -67,7 +67,7 @@ class TabGame extends StatelessWidget {
                             shrinkWrap: true,
                             itemCount: game.possibleSolutions.length,
                             itemBuilder: (context, index) => Obx(() => AnswerTile(
-                                text: game.possibleSolutions[index],
+                                text: game.possibleSolutions[index].tr,
                                 color: answerColors[index],
                                 onTap: () => submitAnswer(index)
                             ),
@@ -95,10 +95,10 @@ class TabGame extends StatelessWidget {
                       context: context,
                       builder: (context) => CustomDialog(
                         backgroundBlur: 1.5,
-                        title: "Quitter",
-                        message: "Êtes-vous sûr de vouloir arrêter cette session?",
-                        validateText: "Oui",
-                        cancelText: "Non",
+                        title: "game_leave".tr,
+                        message: "game_leave_desc".tr,
+                        validateText: "yes".tr,
+                        cancelText: "no".tr,
                         onValidate: () {
                           game.goToEnd();
                           Get.off(() => GameSummary());

@@ -1,7 +1,7 @@
 import "package:fraction/fraction.dart";
 
+import "../../../utils/utils.dart";
 import "../solvable.dart";
-import "../../../utils/globals.dart";
 
 /// In-app representation of a first-degree equation `a * x + b = c`.
 class EquationFull extends Solvable with UsualFakes, Decimals {

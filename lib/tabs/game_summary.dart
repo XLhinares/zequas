@@ -6,7 +6,7 @@ import "../utils/globals.dart";
 import "../widgets/game/game_stats.dart";
 import "../widgets/game/history_tile.dart";
 import "../widgets/layout/scaffold_fit.dart";
-import "../classes/archived_turn.dart";
+import "../classes/game/archived_turn.dart";
 
 /// The summary of the game that was just played.
 class GameSummary extends StatelessWidget {
@@ -84,7 +84,7 @@ class GameSummary extends StatelessWidget {
               margin: EdgeInsets.all(XLayout.paddingM),
               onTap: () => Get.back(),
               child: Text(
-                "Retour au menu",
+                "back_to_menu".tr,
                 style: Get.textTheme.bodyMedium,
               ),
             ),
