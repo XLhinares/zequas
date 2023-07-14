@@ -1,69 +1,57 @@
-// Flutter dependencies
 import "package:flutter/material.dart";
-
-// Package dependencies
 import "package:expandable/expandable.dart";
 import "package:get/get.dart";
 import "package:x_containers/x_containers.dart";
 
-// Project dependencies
-import "package:zequas/classes/gamemode.dart";
-import "package:zequas/utils/globals.dart";
+import "../../classes/game/game_category.dart";
+import "../../utils/globals.dart";
 
 /// A panel to encompass a few gamemodes.
-class GamemodePanel extends StatelessWidget {
+class GameCategoryPanel extends StatelessWidget {
 
   // CONSTRUCTOR ===============================================================
 
-  /// The title of the panel, summarizes the contents.
-  final String title;
-
-  /// The description of the contents of the panel.
-  final String description;
-
-  /// A list of the gamemodes featured in the panel.
-  final List<Gamemode> displayedModes;
+  /// The [GameCategory] to be displayed in this panel.
+  final GameCategory category;
 
   final ExpandableController _controller = ExpandableController(initialExpanded: true);
 
-  /// Returns an instance of [GamemodePanel] matching the given parameters.
-  GamemodePanel({
+  /// Returns an instance of [GameCategoryPanel] matching the given parameters.
+  GameCategoryPanel({
     Key? key,
-    required this.title,
-    this.description = "",
-    this.displayedModes = const [],
+    required this.category,
   }) : super(key: key);
 
   // BUILD =====================================================================
 
   @override
   Widget build(BuildContext context) {
-    return ShadowContainer(
+    return XContainer(
       child: ExpandablePanel(
         controller: _controller,
         header: Padding(
-          padding: EdgeInsets.only(bottom: xPaddingM),
+          padding: EdgeInsets.only(bottom: XLayout.paddingM),
           child: Text(
-            title,
-            style: Get.textTheme.titleSmall,
+            category.title.tr,
+            style: context.textTheme.titleSmall,
           ),
         ),
         collapsed: Visibility(
-          visible: description.isNotEmpty,
+          visible: category.description.isNotEmpty,
           child: Text(
-            description,
-            style: Get.textTheme.bodyMedium,
+            category.description.tr,
+            style: context.textTheme.bodyMedium,
           ),
         ),
         expanded: Column(
           children: [
-            ...displayedModes.map<Widget>(
-                  (mode) => InkContainer(
-                margin: EdgeInsets.all(xPaddingXS,
+            ...category.modes.map<Widget>(
+                  (mode) => XInkContainer(
+                margin: EdgeInsets.all(XLayout.paddingXS,
                 ),
                 padding: EdgeInsets.symmetric(
-                  vertical: xPaddingS,
-                  horizontal: xPaddingM,
+                  vertical: XLayout.paddingS,
+                  horizontal: XLayout.paddingM,
                 ),
                 enableShadow: false,
                 color: Colors.white70,
@@ -73,16 +61,16 @@ class GamemodePanel extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      mode.name,
-                      style: Get.textTheme.bodyMedium!.copyWith(
+                      mode.title.tr,
+                      style: context.textTheme.bodyMedium!.copyWith(
                         color: Colors.black.withOpacity(0.8),
                       ),
                     ),
                     Text(
-                      mode.example,
-                      style: Get.textTheme.bodySmall!.copyWith(
+                      mode.description.tr,
+                      style: context.textTheme.bodySmall!.copyWith(
                         // color: Colors.black.withOpacity(0.8),
-                        color: DefaultColors.secondary,
+                        color: context.theme.colorScheme.secondary,
                       ),
                     ),
                   ],

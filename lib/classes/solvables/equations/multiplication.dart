@@ -1,9 +1,7 @@
-// Package dependencies
 import "package:fraction/fraction.dart";
 
-// Project dependencies
-import "package:zequas/classes/solvables/solvable.dart";
-import "package:zequas/utils/globals.dart";
+import "../../../utils/utils.dart";
+import "../solvable.dart";
 
 /// In-app representation of an equation `x + a = b`.
 class EquationMultiplication extends Solvable with UsualFakes, Decimals {

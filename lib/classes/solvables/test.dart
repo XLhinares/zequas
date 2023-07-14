@@ -1,4 +1,4 @@
-import "package:zequas/classes/solvables/solvable.dart";
+import "solvable.dart";
 
 /// A fake implementation for testing purposes.
 class TestSolvable extends Solvable {

@@ -1,4 +1,4 @@
-import 'dart:math';
+import "dart:math";
 
 /// Archive of a turn to store stats.
 class ArchivedTurn {

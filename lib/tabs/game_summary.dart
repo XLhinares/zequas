@@ -1,16 +1,12 @@
-// Flutter dependencies
 import "package:flutter/material.dart";
-
-// Package dependencies
 import "package:get/get.dart";
 import "package:x_containers/x_containers.dart";
 
-// Project dependencies
-import "package:zequas/utils/globals.dart";
-import "package:zequas/widgets/game/game_stats.dart";
-import "package:zequas/widgets/game/history_tile.dart";
-import "package:zequas/widgets/layout/scaffold_fit.dart";
-import "package:zequas/classes/archived_turn.dart";
+import "../utils/globals.dart";
+import "../widgets/game/game_stats.dart";
+import "../widgets/game/history_tile.dart";
+import "../widgets/layout/scaffold_fit.dart";
+import "../classes/game/archived_turn.dart";
 
 /// The summary of the game that was just played.
 class GameSummary extends StatelessWidget {
@@ -59,21 +55,22 @@ class GameSummary extends StatelessWidget {
           // MAIN WINDOW -------------------------------------------------------
           Positioned.fill(
             child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: xPaddingM),
-              child: ListView.builder(
+              padding: EdgeInsets.symmetric(horizontal: XLayout.paddingM),
+              child: ListView.separated(
                 padding: EdgeInsets.only(
                   top: Get.height * 0.1,
                   bottom: Get.height * 0.15,
                 ),
                 physics: const BouncingScrollPhysics(),
                 itemCount: history.length + 1,
-                itemBuilder: (BuildContext context, int index) => index == 0
+                itemBuilder: (context, index) => index == 0
                     ? GameStats(score: score, success: success,)
                     : HistoryTile(
                   question: history[index - 1].question,
                   solution: history[index - 1].solution,
                   tries: history[index - 1].attempts,
                 ),
+                separatorBuilder: (context, index) => XLayout.verticalS,
               ),
             ),
           ),
@@ -83,11 +80,11 @@ class GameSummary extends StatelessWidget {
             bottom: 0,
             left: 0,
             right: 0,
-            child: InkContainer(
-              margin: EdgeInsets.all(xPaddingM),
+            child: XInkContainer(
+              margin: EdgeInsets.all(XLayout.paddingM),
               onTap: () => Get.back(),
               child: Text(
-                "Retour au menu",
+                "back_to_menu".tr,
                 style: Get.textTheme.bodyMedium,
               ),
             ),

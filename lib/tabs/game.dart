@@ -1,19 +1,15 @@
-// Flutter dependencies
 import "dart:async";
 
 import "package:flutter/material.dart";
-
-// Package dependencies
 import "package:get/get.dart";
-import "package:x_containers/settings/x_layout.dart";
-import "package:zequas/tabs/game_summary.dart";
+import "package:x_containers/x_containers.dart";
 
-// Project dependencies
-import "package:zequas/utils/globals.dart";
-import "package:zequas/widgets/game/answer_tile.dart";
-import "package:zequas/widgets/layout/custom_dialog.dart";
-import "package:zequas/widgets/layout/frame_fit.dart";
-import "package:zequas/widgets/layout/scaffold_fit.dart";
+import "game_summary.dart";
+import "../utils/globals.dart";
+import "../widgets/game/answer_tile.dart";
+import "../widgets/layout/custom_dialog.dart";
+import "../widgets/layout/frame_fit.dart";
+import "../widgets/layout/scaffold_fit.dart";
 
 /// The game tab.
 ///
@@ -57,21 +53,21 @@ class TabGame extends StatelessWidget {
                     // progress bar can fill the whole width.
                     child: FrameFit(
                       padding: EdgeInsets.symmetric(
-                        horizontal: xPaddingM,
+                        horizontal: XLayout.paddingM,
                       ),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
                             game.question,
-                            style: Get.theme.textTheme.titleMedium,
+                            style: context.textTheme.titleMedium,
                           ),
                           XLayout.verticalM,
                           ListView.separated(
                             shrinkWrap: true,
                             itemCount: game.possibleSolutions.length,
                             itemBuilder: (context, index) => Obx(() => AnswerTile(
-                                text: game.possibleSolutions[index],
+                                text: game.possibleSolutions[index].tr,
                                 color: answerColors[index],
                                 onTap: () => submitAnswer(index)
                             ),
@@ -94,15 +90,15 @@ class TabGame extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   IconButton(
-                    iconSize: xPaddingL,
+                    iconSize: XLayout.paddingL,
                     onPressed: () => showDialog(
                       context: context,
                       builder: (context) => CustomDialog(
                         backgroundBlur: 1.5,
-                        title: "Quitter",
-                        message: "Êtes-vous sûr de vouloir arrêter cette session?",
-                        validateText: "Oui",
-                        cancelText: "Non",
+                        title: "game_leave".tr,
+                        message: "game_leave_desc".tr,
+                        validateText: "yes".tr,
+                        cancelText: "no".tr,
                         onValidate: () {
                           game.goToEnd();
                           Get.off(() => GameSummary());

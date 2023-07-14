@@ -1,24 +1,42 @@
+## 2.0.0
+
+- :globe_with_meridians: Added localization for FR and EN locales.
+- :sparkles: Changed the game mode implementation to be more plugin-like.
+
+## 1.1.1
+
+- :arrow_up: Update all dependencies
+
+## 1.1.0
+
+- :green_heart: Github workflow for Flutter.
+- :white_check_mark: An example for tests on Solvables.
+
+## 1.0.4
+
+- :arrow_up: the dependencies
+
 ## 1.0.3
 
-- Added a score function
-- Added a launcher icon
-- Added a splash screen
+- :sparkles: a score function
+- :sparkles: a launcher icon
+- :sparkles: a splash screen
 
 ## 1.0.2
 
-- Added support for fractions
-- Added a "no answer" scenario
-- Reworked the handling of fractions (including when used for equations)
+- :sparkles: support for fractions
+- :sparkles: a "no answer" scenario
+- Reworked: the handling of fractions (including when used for equations)
 
 ## 1.0.1
 
-- Added a splash screen
-- Added support for percentage
-- Added settings saved through SharedPreferences
-- Replaced layout globals with the XContainers package 
+- :sparkles: a splash screen
+- :sparkles: support for percentage
+- :sparkles: settings saved through SharedPreferences
+- :heavy_plus_sign: layout globals with the XContainers package 
 
 ## 1.0.0
 
-- Created the structure of the game
-- Added support for equations
-- Added game history and stats
+- :sparkles: the structure of the game
+- :sparkles: support for equations
+- :sparkles: game history and stats

@@ -1,8 +1,11 @@
 // Package dependencies
 import "dart:async";
+import "dart:ui";
 
 import "package:get/get.dart";
-import "package:shared_preferences/shared_preferences.dart";
+import "package:get_storage/get_storage.dart";
+
+import "../utils/globals.dart";
 
 /// A singleton handling the shared preferences and the memory of the app.
 class Settings extends GetxController {
@@ -15,18 +18,27 @@ class Settings extends GetxController {
   final RxBool loaded = false.obs;
 
   /// The [SharedPreferences] object that keeps track of everything.
-  late final SharedPreferences _prefs;
+  late final GetStorage _storage;
 
   // ACTUAL --------------------------------------------------------------------
 
   /// The number of turns in a game.
-  RxInt gameLength = RxInt(5);
+  late final RxInt gameLength;
 
   /// The number of possible solutions to a given solvable.
-  RxInt numberOfPossibleSolutions = RxInt(4);
+  late final RxInt numberOfPossibleSolutions;
 
   /// Whether to show emojis rather than "x" in the relevant questions.
-  RxBool emojifyQuestions = RxBool(true);
+  late final RxBool emojifyQuestions;
+
+  /// The locale used for the language of the app.
+  late final RxString locale;
+
+  /// Whether the user is allowing the cookies.
+  late final RxBool cookies;
+
+  /// Whether the user has dismissed the cookie banner.
+  late final RxBool cookieBannerDismissed;
 
   // CONSTRUCTOR ===============================================================
 
@@ -47,16 +59,31 @@ class Settings extends GetxController {
 
   Future<void> _init () async {
     // Instantiating variables.
-    _prefs = await SharedPreferences.getInstance();
+    _storage = GetStorage();
 
-    gameLength.value = _prefs.getInt("gameLength") ?? 4;
-    numberOfPossibleSolutions.value = _prefs.getInt("numberOfPossibleSolutions") ?? 4;
-    emojifyQuestions.value = _prefs.getBool("emojifyQuestions") ?? true;
+    // COOKIES
+    cookies = RxBool(_storage.read<bool>("cookies") ?? true);
+    _saveCookies(cookies.value);
+    cookieBannerDismissed = RxBool(cookies.value);
+
+    gameLength = RxInt(_storage.read<int>("gameLength") ?? 4);
+    _saveGameLength(gameLength.value);
+
+    numberOfPossibleSolutions = RxInt(_storage.read<int>("numberOfPossibleSolutions") ?? 4);
+    _saveNumberOfPossibleSolutions(numberOfPossibleSolutions.value);
+
+    emojifyQuestions = RxBool(_storage.read<bool>("emojifyQuestions") ?? true);
+    _saveEmojifyQuestions(emojifyQuestions.value);
+
+    // LOCALE
+    locale = RxString(_storage.read<String>("locale") ?? "en");
+    _saveLocale(locale.value);
 
     // Setting up workers.
-    ever<int>(gameLength, saveGameLength);
-    ever<int>(numberOfPossibleSolutions, saveNumberOfPossibleSolutions);
-    ever<bool>(emojifyQuestions, saveEmojifyQuestions);
+    ever<int>(gameLength, _saveGameLength);
+    ever<int>(numberOfPossibleSolutions, _saveNumberOfPossibleSolutions);
+    ever<bool>(emojifyQuestions, _saveEmojifyQuestions);
+    ever<String>(locale, _saveLocale);
 
 
     // All done.
@@ -68,7 +95,7 @@ class Settings extends GetxController {
 // METHODS ===================================================================
 
   /// Performs a check on the value of [gameLength] then save it to memory.
-  void saveGameLength (int value) {
+  void _saveGameLength (int value) {
     print("saving game length");
     if (value < 3) {
       gameLength.value = 3;
@@ -76,22 +103,59 @@ class Settings extends GetxController {
       gameLength.value = 20;
     }
 
-    _prefs.setInt("gameLength", value);
+    _storage.write("gameLength", value);
   }
 
-  /// Performs a check on the value of [saveNumberOfPossibleSolutions] then save it to memory.
-  void saveNumberOfPossibleSolutions (int value) {
+  /// Performs a check on the value of [_saveNumberOfPossibleSolutions] then save it to memory.
+  void _saveNumberOfPossibleSolutions (int value) {
     if (value < 3) {
       numberOfPossibleSolutions.value = 3;
     } else if (value > 6) {
       numberOfPossibleSolutions.value = 6;
     }
 
-    _prefs.setInt("numberOfPossibleSolutions", value);
+    _storage.write("numberOfPossibleSolutions", value);
   }
 
   /// Saves the value of [emojifyQuestions] to memory.
-  void saveEmojifyQuestions (bool value) {
-    _prefs.setBool("emojifyQuestions", value);
+  void _saveEmojifyQuestions (bool value) {
+    _storage.write("emojifyQuestions", value);
+  }
+
+  /// Performs a check on the value of the [locale] then save it to memory.
+  Future<void> _saveLocale(String value) async {
+    printInfo(info: "Changing locale to: $value");
+    Get.updateLocale(Locale(value));
+
+    if (cookies.isFalse) return;
+    await _storage.write("locale", value);
+  }
+
+  /// Rotates between the different supported locales.
+  Future<void> rotateLocale() async {
+    final int index = supportedLocales.indexOf(locale.value);
+    final String newLocale =
+    supportedLocales[(index + 1) % supportedLocales.length];
+    locale.value = newLocale;
+  }
+
+  /// Performs a check on the value of [cookies] then save it to memory.
+  Future<void> _saveCookies(bool value) async {
+    printInfo(info: "Changing cookies to: $value");
+
+    if (value) {
+      await _storage.write("cookies", value);
+      // Try to save all the data that was not save due to cookies.
+      await _saveLocale(locale.value);
+    } else {
+      _clearCookies();
+    }
+  }
+
+  /// Deletes the cookies.
+  Future<void> _clearCookies() async {
+    await _storage.remove("cookies");
+    await _storage.remove("locale");
+    await _storage.remove("theme");
   }
 }

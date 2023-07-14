@@ -1,15 +1,11 @@
-// Flutter dependencies
 import "package:flutter/material.dart";
 import "package:get/get.dart";
-
-// Package dependencies
 import "package:x_containers/x_containers.dart";
 
-// Project dependencies
-import "package:zequas/tabs/settings.dart";
-import "package:zequas/classes/gamemode.dart";
-import "package:zequas/widgets/home/game_mode_panel.dart";
-import "package:zequas/widgets/layout/scaffold_fit.dart";
+import "../utils/globals.dart";
+import "settings.dart";
+import "../widgets/home/game_category_panel.dart";
+import "../widgets/layout/scaffold_fit.dart";
 
 /// The home tab of the game.
 ///
@@ -39,40 +35,15 @@ class Home extends StatelessWidget {
           ),
         ],
       ),
-      padding: EdgeInsets.symmetric(horizontal: xPaddingM),
-      body: ListView(
+      padding: EdgeInsets.symmetric(horizontal: XLayout.paddingM),
+      body: ListView.separated(
         physics: const BouncingScrollPhysics(),
-        padding: EdgeInsets.symmetric(vertical: xPaddingM),
-        children: [
-          GamemodePanel(
-            title: "Fractions",
-            description: "Trouver le résultat d'un calcul impliquant des fractions.",
-            displayedModes: const [
-              Gamemode.fractionAddition,
-              Gamemode.fractionMultiplication,
-              Gamemode.fractionAll,
-            ],
-          ),
-          XLayout.verticalM,
-          GamemodePanel(
-            title: "Équations",
-            description: "Trouver la valeur inconnue dans une équation simple.",
-            displayedModes: const [
-              Gamemode.equationAddition,
-              Gamemode.equationMultiplication,
-              Gamemode.equationAll,
-            ],
-          ),
-          XLayout.verticalM,
-          GamemodePanel(
-            title:"Pourcentages",
-            description: "Calculer un pourcentage ou une promotion.",
-            displayedModes: const [
-              Gamemode.percentage,
-              Gamemode.sale,
-            ],
-          ),
-        ],
+        padding: EdgeInsets.symmetric(vertical: XLayout.paddingM),
+        itemCount: game.categories.length,
+        itemBuilder: (context, index) => GameCategoryPanel(
+          category: game.categories[index],
+        ),
+        separatorBuilder: (context, index) => XLayout.verticalM,
       ),
     );
   }

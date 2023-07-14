@@ -1,4 +1,6 @@
-import "package:zequas/classes/solvables/solvable.dart";
+import "package:get/get.dart";
+
+import "../solvable.dart";
 
 /// Solvable teaching how to find the percentage of a value.
 class Sale extends Solvable with UsualFakes {
@@ -16,7 +18,7 @@ class Sale extends Solvable with UsualFakes {
   late final double result;
 
   /// Returns a new percentage solvable instance.
-  Sale() {
+  Sale({super.localizationPrefix}) {
 
     type = random.nextInt(1);
     percentage = random.nextInt(50);
@@ -36,7 +38,7 @@ class Sale extends Solvable with UsualFakes {
 
   @override
   String generateQuestion() {
-    return "$value€ ${["diminue", "augmente"][type]} de $percentage%";
+    return "$localizationPrefix${["sales_down", "sales_up"][type]}".trParams({"value": value.toString(), "percentage": percentage.toString()});
   }
 
   @override

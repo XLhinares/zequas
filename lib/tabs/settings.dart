@@ -1,15 +1,13 @@
-// Flutter dependencies
 import "package:flutter/material.dart";
-
-// Package dependencies
 import "package:get/get.dart";
 import "package:x_containers/x_containers.dart";
 
-// Project dependencies
-import "package:zequas/utils/globals.dart";
-import "package:zequas/widgets/layout/scaffold_fit.dart";
-import "package:zequas/widgets/settings/panel.dart";
-import "package:zequas/widgets/settings/settings_row.dart";
+import "../utils/globals.dart";
+import "../utils/tools.dart";
+import "../widgets/layout/scaffold_fit.dart";
+import "../widgets/settings/locale.dart";
+import "../widgets/settings/panel.dart";
+import "../widgets/settings/settings_row.dart";
 
 /// A tab where the user can find and edit the main app settings.
 class TabSettings extends StatelessWidget {
@@ -26,21 +24,21 @@ class TabSettings extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScaffoldFit(
-      padding: EdgeInsets.symmetric(horizontal: xPaddingM),
+      padding: EdgeInsets.symmetric(horizontal: XLayout.paddingM),
       appBar: AppBar(
-        title: const Text("Paramètres"),
+        title: Text("settings".tr),
       ),
       body: ListView(
-        padding: EdgeInsets.symmetric(vertical: xPaddingM),
+        padding: EdgeInsets.symmetric(vertical: XLayout.paddingM),
         children: [
           // GAME LENGTH -------------------------------------------------------
 
           SettingsPanel(
-            title: "Paramètres de jeu",
-            description: "Les paramètres affectant la manière dont une partie se déroule.",
+            title: "settings_game".tr,
+            description: "settings_game_desc".tr,
             settings: [
               SettingsRow.separated(
-                name: "Nombre de questions:",
+                name: "settings_game_questions".tr,
                 // description: "Le nombre de questions qui seront posées au cours d'une partie.",
                 actions: [
                   GestureDetector(
@@ -56,7 +54,7 @@ class TabSettings extends StatelessWidget {
               ),
               // NUMBER OF POSSIBLE SOLUTIONS
               SettingsRow.separated(
-                name: "Nombre de choix:",
+                name: "settings_game_choices".tr,
                 // description: "Le nombres de potentielles solutions proposées à chaque tour.",
                 actions: [
                   GestureDetector(
@@ -64,7 +62,7 @@ class TabSettings extends StatelessWidget {
                     child: Icon(Icons.remove, color: DefaultColors.textBlack,),
                   ),
                   SizedBox(
-                    width: xPaddingM,
+                    width: XLayout.paddingM,
                     child: Center(
                       child: Obx(() => Text(settings.numberOfPossibleSolutions.toString())),
                     ),
@@ -76,8 +74,8 @@ class TabSettings extends StatelessWidget {
                 ],
               ),
               SettingsRow(
-                name: "Emojiser les questions:",
-                description: "Montrer un emoji plutôt que 'x' dans les questions.",
+                name: "settings_game_emojis".tr,
+                description: "settings_game_emojis_desc".tr,
                 actions: [
                   Obx(() => Checkbox(
                     value: settings.emojifyQuestions.value,
@@ -86,9 +84,20 @@ class TabSettings extends StatelessWidget {
                 ],
               )
             ],
-          )
+          ),
 
+          XLayout.verticalM,
 
+          SettingsPanel(
+            title: "settings_app".tr,
+            description: "settings_app_desc".tr,
+            settings: [
+              SettingsRow(
+                name: "settings_app_locale".tr,
+                actions: [SettingsLocale()],
+              ),
+            ],
+          ),
 
         ],
       ),

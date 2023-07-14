@@ -66,11 +66,11 @@ class CustomDialog extends StatelessWidget {
       child: AlertDialog(
         title: Text(
           title,
-        style: Get.textTheme.titleSmall!
+        style: context.textTheme.titleSmall!
         ),
         content: Text(
           message,
-          style: Get.textTheme.bodyMedium!
+          style: context.textTheme.bodyMedium!
         ),
         actions: <Widget>[
           TextButton(

@@ -1,15 +1,14 @@
-// Package dependencies
-import 'dart:collection';
+import "dart:collection";
 
 import "package:get/get.dart";
 
-// Project dependencies
-import "package:zequas/classes/solvables/solvable.dart";
-import "package:zequas/tabs/game.dart";
-import "package:zequas/classes/gamemode.dart";
-import 'package:zequas/tabs/game_summary.dart';
-import "package:zequas/utils/globals.dart";
-import "package:zequas/classes/archived_turn.dart";
+import "../solvables/solvables.dart";
+import "../../tabs/game.dart";
+import "game_category.dart";
+import "game_mode.dart";
+import "../../tabs/game_summary.dart";
+import "../../utils/globals.dart";
+import "archived_turn.dart";
 
 /// The in-app representation of a game.
 ///
@@ -21,8 +20,11 @@ class Game extends GetxController {
 
   // META ----------------------------------------------------------------------
 
+  /// The known game mode categories
+  final List<GameCategory> categories = [];
+
   /// The current mode of the game.
-  Gamemode mode = Gamemode.none;
+  GameMode? mode;
 
   /// The list of turns that are going to appear.
   ///
@@ -82,8 +84,17 @@ class Game extends GetxController {
 
   // METHODS ===================================================================
 
+  /// Add a [GameCategory] to the list of handled ones.
+  ///
+  /// The goal of this function (as opposed to hardcoded categories) is to make
+  /// the app plugin-able.
+  void addModeCategory (GameCategory category) {
+    categories.add(category);
+    category.addGlobalTranslations();
+  }
+
   /// Creates a new game in the given gamemode and navigates to the game tab.
-  void start ({Gamemode mode = Gamemode.none}) {
+  void start ({required GameMode mode}) {
     print("a: $mode");
     this.mode = mode;
     _prepareNewGame();
@@ -95,16 +106,16 @@ class Game extends GetxController {
 
   /// Resets the index and generates a new set of turns according to the gamemode.
   void _prepareNewGame() {
+
+    if (mode == null) throw AssertionError("Mode cannot be null when preparing a game");
+
     _index = 0;
     _turns.clear();
     _history.clear();
 
     for (int i = 0 ; i < settings.gameLength.value ; i++) {
 
-      final Solvable turn = Solvable.fromMode(
-        mode: mode,
-        seed: i,
-      );
+      final Solvable turn = mode!.generateSolvable();
       _turns.add(turn);
       _history.add(ArchivedTurn(
         question: turn.question,
