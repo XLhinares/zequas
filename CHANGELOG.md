@@ -1,3 +1,8 @@
+## 2.0.0
+
+- :globe_with_meridians: Added localization for FR and EN locales.
+- :sparkles: Changed the game mode implementation to be more plugin-like.
+
 ## 1.1.1
 
 - :arrow_up: Update all dependencies

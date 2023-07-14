@@ -2,19 +2,26 @@ import "package:flutter/material.dart";
 import "package:flutter_emoji/flutter_emoji.dart";
 import "package:x_containers/x_containers.dart";
 
-import "../classes/game.dart";
+import "../classes/game/game.dart";
 import "../classes/settings.dart";
+import "translations.dart";
 
 // SINGLETONS ==================================================================
 
 /// In-app representation of the game being played.
-Game game = Game();
+final Game game = Game();
 
 /// The saved settings.
-Settings settings = Settings();
+final Settings settings = Settings();
+
+/// The list of the different supported localizations.
+const List<String> supportedLocales = ["fr", "en"];
+
+/// The object containing all the translations used in the app.
+final CustomTranslations translations = CustomTranslations();
 
 /// A parser for emojify-ed text.
-EmojiParser emojiParser = EmojiParser();
+final EmojiParser emojiParser = EmojiParser();
 
 /// A list of emoji to use.
 List<String> emojis = [
@@ -86,29 +93,6 @@ List<String> emojis = [
   emojiParser.emojify(":panda_face:"),
   emojiParser.emojify(":chipmunk:"),
 ];
-
-/// A random emoji from the [emojis] list.
-String get randomEmoji {
-  emojis.shuffle();
-  return emojis.first;
-}
-
-/// A random emoji from the [emojis] list or a "x", according to [settings.emojifyQuestions].
-String get randomVariable {
-  if (settings.emojifyQuestions.value) {
-    return randomEmoji;
-  } else {
-    return "x";
-  }
-}
-
-// COLOR SCHEME ================================================================
-
-/// An extension on the [Colors] class to add the colors of this theme.
-extension DefaultColors on Colors {
-  /// The color used for black text.
-  static Color textBlack = Colors.black.withOpacity(0.7);
-}
 
 /// A pastel theme data.
 ThemeData themePastel = xTheme.getTheme(

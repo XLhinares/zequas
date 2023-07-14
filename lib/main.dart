@@ -4,7 +4,7 @@ import "package:x_containers/x_containers.dart";
 import "package:get/get.dart";
 
 import "tabs/splash_screen.dart";
-import "utils/globals.dart";
+import "utils/utils.dart";
 
 void main() async {
 
@@ -17,9 +17,15 @@ void main() async {
     borderRadius: XLayout.brcS,
   );
 
+  postInitialize();
+  print(translations.keys["en"]?.keys);
+
   runApp(GetMaterialApp(
     home: SplashScreen(),
     debugShowCheckedModeBanner: false,
+    translations: translations,
+    locale: Get.deviceLocale,
+    fallbackLocale: const Locale("en"),
     // THEME ===================================================================
     themeMode: ThemeMode.light,
     theme: themePastel,

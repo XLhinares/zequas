@@ -33,7 +33,7 @@ class GameStats extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                "Taux de réussite:",
+                "success_rate".tr,
                 style: context.textTheme.titleMedium,
               ),
               Text(
@@ -47,7 +47,7 @@ class GameStats extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                "Score:",
+                "score".tr,
                 style: context.textTheme.titleSmall,
               ),
               Text(

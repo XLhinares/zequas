@@ -1,16 +1,6 @@
 import "dart:math";
 
-import "../gamemode.dart";
-import "equations/addition.dart";
-import "equations/equation.dart";
-import "equations/multiplication.dart";
-import "fractions/addition.dart";
-import "fractions/equation.dart";
-import "fractions/multiplication.dart";
-import "percentages/percentage.dart";
-import "percentages/sale.dart";
-import "test.dart";
-import "../../utils/globals.dart";
+import "../../utils/utils.dart";
 
 export "mixins.dart";
 
@@ -43,6 +33,9 @@ abstract class Solvable {
   /// A random number generator.
   final Random random = Random();
 
+  /// A prefix used to recognized the solvable when there is a need to localize a string.
+  late final String localizationPrefix;
+
   // GETTERS ===================================================================
 
   /// The number of possible solutions that should be generated
@@ -53,36 +46,8 @@ abstract class Solvable {
   // CONSTRUCTOR ===============================================================
 
   /// Returns the instance of [Solvable] generated using the seed.
-  Solvable({int? seed,});
-
-  /// Returns the subclass of [Solvable] matching the given gamemode.
-  factory Solvable.fromMode ({
-    Gamemode mode = Gamemode.none,
-    int? seed,
-  }) {
-    switch (mode) {
-    // FRACTION --------------------------------------------------------------
-      case Gamemode.fractionAddition:
-        return FractionAddition();
-      case Gamemode.fractionMultiplication:
-        return FractionMultiplication();
-      case Gamemode.fractionAll:
-        return FractionEquation();
-    // EQUATION --------------------------------------------------------------
-      case Gamemode.equationAddition:
-        return EquationAddition();
-      case Gamemode.equationMultiplication:
-        return EquationMultiplication();
-      case Gamemode.equationAll:
-        return EquationFull();
-    // PERCENTAGE ------------------------------------------------------------
-      case Gamemode.percentage:
-        return Percentage();
-      case Gamemode.sale:
-        return Sale();
-      default:
-        return TestSolvable();
-    }
+  Solvable({int? seed, String? localizationPrefix}) {
+    this.localizationPrefix = localizationPrefix.underscoreIfNotNull;
   }
 
   // METHODS ===================================================================
@@ -93,7 +58,7 @@ abstract class Solvable {
 
     final bool noAnswer = random.nextDouble() < probaNoSolution;
     if (noAnswer) {
-      solution = "Aucun des autres choix";
+      solution = "solvable_answer_none";
     } else {
       solution = generateSolution();
     }
@@ -105,7 +70,7 @@ abstract class Solvable {
     // It has the same chance to appear as a fake solution than as the right
     // solution so that the "no answer" stays balanced.
     if (!noAnswer && random.nextDouble() < probaNoSolution) {
-      possibleSolutions.add("Aucun des autres choix");
+      possibleSolutions.add("solvable_answer_none");
     }
 
     int remainingFakeSolutions = fakeSolutionsLength - possibleSolutions.length + 1;

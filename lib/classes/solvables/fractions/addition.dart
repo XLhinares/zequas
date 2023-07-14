@@ -1,7 +1,7 @@
 import "package:fraction/fraction.dart";
 
+import "../../../utils/utils.dart";
 import "../solvable.dart";
-import "../../../utils/globals.dart";
 
 /// In-app representation of an addition of fractions `a + b = x`.
 class FractionAddition extends Solvable with UsualFakes, Fractions {

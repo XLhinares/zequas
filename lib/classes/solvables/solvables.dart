@@ -1,0 +1,9 @@
+export "solvable.dart";
+export "fractions/addition.dart";
+export "fractions/multiplication.dart";
+export "fractions/equation.dart";
+export "equations/addition.dart";
+export "equations/multiplication.dart";
+export "equations/equation.dart";
+export "percentages/percentage.dart";
+export "percentages/sale.dart";
