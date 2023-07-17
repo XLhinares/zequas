@@ -33,7 +33,17 @@ class CustomTranslations extends Translations {
       "settings_game_emojis": "Use emojis",
       "settings_game_emojis_desc": "Show emojis instead of a 'x' in the questions",
       "settings_app": "App settings",
+      "settings_app_desc": "App settings",
       "settings_app_locale": "Locale",
+      "settings_app_locale_desc": "Pick your favorite language",
+      "settings_credits": "Credits",
+      "settings_credits_desc": "Thank you for using my app!",
+      "settings_credits_site": "Made by Xeppelin",
+      "settings_credits_site_desc": "Here's a link to my website if you wanna learn more about me.",
+      "settings_credits_bmac": "Buy me a pizza",
+      "settings_credits_bmac_desc": "If you appreciate my work, feel free to buy me a slice of pizza by clicking here.",
+      "settings_credits_ad": "Watch an ad",
+      "settings_credits_ad_desc": "Alternatively, if you want to help but a slice of pizza is too much, you can click here and watch an ad :)",
     },
     "fr": {
       // GENERAL
@@ -63,6 +73,15 @@ class CustomTranslations extends Translations {
       "settings_game_emojis_desc": "Montrer un emoji plutôt que 'x' dans les questions.",
       "settings_app": "Paramètres de l'app",
       "settings_app_locale": "Langage",
+      "settings_app_locale_desc": "Choisis ta langue favorite",
+      "settings_credits": "Crédits",
+      "settings_credits_desc": "Merci d'utiliser mon application!",
+      "settings_credits_site": "Développé par Xeppelin",
+      "settings_credits_site_desc": "Ci-joint, un lien pour accéder à mon site si tu veux en savoir plus sur moi.",
+      "settings_credits_bmac": "Offre moi une pizza",
+      "settings_credits_bmac_desc": "Si tu aimes mon travail, tu peux m'acheter une part de pizza en cliquant ici.",
+      "settings_credits_ad": "Regarder une pub",
+      "settings_credits_ad_desc": "Sinon, si tu veux aider mais qu'une part de pizza c'est trop, tu peux cliquer ici et regarder une pub :)",
     }
   };
 }

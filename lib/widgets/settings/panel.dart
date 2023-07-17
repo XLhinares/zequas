@@ -16,8 +16,10 @@ class SettingsPanel extends StatelessWidget {
   /// The description of the contents of the panel.
   final String description;
 
-  /// A list of the gamemodes featured in the panel.
-  final List<SettingsRow> settings;
+  /// A list of the settings featured in the panel.
+  ///
+  /// For aesthetic purposes, it is recommended to use [SettingsRow] widgets.
+  final List<Widget> settings;
 
   final ExpandableController _controller = ExpandableController(initialExpanded: true);
 
