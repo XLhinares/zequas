@@ -1,3 +1,9 @@
+## 2.1.0
+
+- :sparkles: Added credit section.
+- :sparkles: Added website link to credit section.
+- :sparkles: Added BMAC link to credit section.
+
 ## 2.0.0
 
 - :globe_with_meridians: Added localization for FR and EN locales.
@@ -5,7 +11,7 @@
 
 ## 1.1.1
 
-- :arrow_up: Update all dependencies
+- :arrow_up: Update all dependencies.
 
 ## 1.1.0
 
@@ -14,29 +20,29 @@
 
 ## 1.0.4
 
-- :arrow_up: the dependencies
+- :arrow_up: the dependencies.
 
 ## 1.0.3
 
-- :sparkles: a score function
-- :sparkles: a launcher icon
-- :sparkles: a splash screen
+- :sparkles: Added a score function.
+- :sparkles: Added a launcher icon.
+- :sparkles: Added a splash screen.
 
 ## 1.0.2
 
-- :sparkles: support for fractions
-- :sparkles: a "no answer" scenario
-- Reworked: the handling of fractions (including when used for equations)
+- :sparkles: Added support for fractions.
+- :sparkles: Added a "no answer" scenario.
+- :sparkles: Reworked the handling of fractions (including when used for equations).
 
 ## 1.0.1
 
-- :sparkles: a splash screen
-- :sparkles: support for percentage
-- :sparkles: settings saved through SharedPreferences
+- :sparkles: Added a splash screen
+- :sparkles: Added support for percentage
+- :sparkles: Added settings saved through SharedPreferences
 - :heavy_plus_sign: layout globals with the XContainers package 
 
 ## 1.0.0
 
-- :sparkles: the structure of the game
-- :sparkles: support for equations
-- :sparkles: game history and stats
+- :sparkles: Added the structure of the game
+- :sparkles: Added support for equations
+- :sparkles: Added game history and stats
