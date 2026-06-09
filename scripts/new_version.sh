@@ -117,7 +117,7 @@ update-code () {
 
 commit-and-push () {
     # --- 9. Commit changes ---
-    git add CHANGELOG.md pubspec.yaml lib/globals.dart
+    git add CHANGELOG.md pubspec.yaml lib/utils/globals.dart
     git commit -m "version: $VERSION"
     git push || { echo "❌ Failed to push to dev"; exit 1; }
 

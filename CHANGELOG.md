@@ -1,3 +1,11 @@
+## 3.0.2
+
+    - script: added new version script
+- v3.0.1
+- readme: much improved readme
+- categories: better game category handling matching the plugin design
+- v3.0.0
+
 ## 3.0.1
 
 - readme: much improved readme
