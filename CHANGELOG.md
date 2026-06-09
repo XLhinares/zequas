@@ -1,3 +1,7 @@
+## 3.0.3
+
+    - dependencies: switched get_storage to fork for wasm build support
+
 ## 3.0.2
 
     - script: added new version script
