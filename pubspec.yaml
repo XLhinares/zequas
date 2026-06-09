@@ -31,7 +31,10 @@ dependencies:
     sdk: flutter
   # framework
   get: ^4.6.5
-  get_storage: ^2.1.1
+  get_storage:
+    git:
+      url: https://github.com/MasoudJabbarian/get_storage.git
+      ref: change-dart-html-to-dart-web
   flutter_native_splash: ^2.4.7
   x_containers: ^1.2.4
   fraction: ^5.0.1
