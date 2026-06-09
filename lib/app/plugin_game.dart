@@ -8,8 +8,10 @@ import "../../utils/globals.dart";
 import "../classes/game/archived_turn.dart";
 import "../classes/game/game_category.dart";
 import "../classes/game/game_mode.dart";
+import "../classes/solvables/equations/category.dart";
+import "../classes/solvables/fractions/category.dart";
+import "../classes/solvables/percentages/category.dart";
 import "../classes/solvables/solvable.dart";
-import "../utils/default_game_categories.dart";
 import "../utils/tools.dart";
 import "app_manager_plugin.dart";
 
@@ -23,9 +25,9 @@ class GamePlugin extends AppManagerPlugin {
   /// Returns a [] instance.
   @override
   Future<void> load({SuccessCallback? then}) async {
-    app.game.addModeCategory(DefaultGameCategories.fraction);
-    app.game.addModeCategory(DefaultGameCategories.equation);
-    app.game.addModeCategory(DefaultGameCategories.percentage);
+    app.game.addModeCategory(gameCategoryFractions);
+    app.game.addModeCategory(gameCategoryEquations);
+    app.game.addModeCategory(gameCategoryPercentages);
 
     super.load();
   }
