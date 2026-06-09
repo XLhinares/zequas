@@ -1,3 +1,8 @@
+## 3.0.1
+
+- readme: much improved readme
+- categories: better game category handling matching the plugin design
+
 ## 3.0.0
 
 - code: Switched to app and plugin implementation
